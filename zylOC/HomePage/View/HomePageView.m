@@ -10,12 +10,27 @@
 
 @implementation HomePageView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)initView{
+    [super initView];
+    [self initData];
 }
-*/
+
+- (void)initData{
+    [self.mainData addObjectsFromArray:@[@1, @1, @1, @1, @1, @1]];
+    [self reloadData];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [ZyRouter route_pushController:@"Zy_Default"];
+}
+
+
+
+
+
+
+
+
 
 @end

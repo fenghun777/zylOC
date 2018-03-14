@@ -16,7 +16,6 @@ typedef void(^GetWebSizeBlock)(CGRect frame);//重新设置web的size
 /*!
  @method
  @brief 加载Url
- @discussion
  @param url
  */
 - (void) ZyLoadUrl:(NSString *) url;
@@ -24,7 +23,6 @@ typedef void(^GetWebSizeBlock)(CGRect frame);//重新设置web的size
 /*!
  @method 读取本地HTML
  @brief 加载Url
- @discussion
  @param url
  */
 - (void) ZyLoadLocationUrl:(NSString *) url;
@@ -32,7 +30,6 @@ typedef void(^GetWebSizeBlock)(CGRect frame);//重新设置web的size
 /*!
  @method 读取无参数HTML
  @brief 加载Url
- @discussion
  @param url
  */
 - (void) ZyLoadNoneParaUrl:(NSString *) url;

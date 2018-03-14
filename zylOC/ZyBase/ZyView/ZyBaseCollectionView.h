@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ZyBaseCollectionView : UICollectionView<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-@property (nonatomic, strong) NSArray *mainData;
+@property (nonatomic, strong) NSMutableArray *mainData;
+- (void)initView;
 @end

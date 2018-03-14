@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    
+    
 }
 
 - (void)controllerInit{
@@ -31,7 +35,7 @@
 
 - (HomePageView *)mainView{
     if (_mainView == nil){
-        _mainView = [[HomePageView alloc] initWithFrame:CGRectZero];
+        _mainView = [[HomePageView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewLayout alloc]init]];
     }
     return _mainView;
 }

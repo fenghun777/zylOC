@@ -69,7 +69,7 @@
 + (NSString *)route_getControllerName:(NSString *)route;{
     NSDictionary *dicController =@{
                                    @"Zy_Web":@"WebViewController",//跳转到网页
-                                   
+                                   @"Zy_Default":@"DefaultViewController",//跳转到默认网页
                                    };
     if ([dicController.allKeys containsObject:route]) {
         route = [NSString stringWithFormat:@"%@",dicController[route]];

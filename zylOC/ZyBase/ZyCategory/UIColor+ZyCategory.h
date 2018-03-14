@@ -14,7 +14,7 @@
 + (UIColor *)zy_RandomColor;
 
 #pragma mark - 随机颜色（十六进制）
-+ (NSString *)zy_RandomColorSixteen;
++ (UIColor *)zy_RandomColorSixteen;
 
 #pragma mark - 十六进制转颜色值
 + (UIColor *)zy_ColorWithHexString: (NSString *)color;

@@ -10,30 +10,46 @@
 
 @implementation ZyUtils
 
-+ (NSMutableArray *)arrayByMovingItemToFirst:(NSMutableArray *)array withItemIndexToMove:(NSInteger)index {
-    id item = array[index];
-    [array removeObjectAtIndex:index];
-    [array insertObject:item atIndex:0];
-    
-    return array;
+
++ (NSString *)zy_random:(NSInteger)max {
+    return [NSString stringWithFormat:@"%ld",(long)(arc4random() % max) + 1];
 }
 
-+ (NSString *)chineseToUTF8:(NSString *)str{
-    NSMutableString *muStr = (NSMutableString *)str;
-    
-    for(int i=0; i< [str length];i++){
-        int a = [str characterAtIndex:i];
-        if( a > 0x4e00 && a < 0x9fff)
-        {
-            NSString *chineseStr = [str substringWithRange:NSMakeRange(i, 1)];
-            NSString *utfStr = [chineseStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            muStr = (NSMutableString *)[muStr stringByReplacingOccurrencesOfString:chineseStr withString:utfStr];
-        }
++ (void)zy_SetBorderWithView:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width {
+    if (top) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, 0, view.frame.size.width, width);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
     }
-    return (NSString *)muStr;
+    if (left) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, 0, width, view.frame.size.height);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+    if (bottom) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(0, view.frame.size.height - width, view.frame.size.width, width);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }
+    if (right) {
+        CALayer *layer = [CALayer layer];
+        layer.frame = CGRectMake(view.frame.size.width - width, 0, width, view.frame.size.height);
+        layer.backgroundColor = color.CGColor;
+        [view.layer addSublayer:layer];
+    }    
 }
 
-
++ (void)zy_SetBorderCorner:(UILabel *)lblOrg size:(CGSize)size{
+    UIRectCorner corner = (UIRectCornerTopLeft | UIRectCornerTopRight);
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:lblOrg.bounds byRoundingCorners:corner cornerRadii:size];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = lblOrg.bounds;
+    maskLayer.path = maskPath.CGPath;
+    lblOrg.layer.mask = maskLayer;
+}
 
 
 

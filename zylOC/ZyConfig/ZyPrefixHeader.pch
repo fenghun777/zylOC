@@ -22,11 +22,19 @@
 
 //所有的分类Category
 #import "UIColor+ZyCategory.h"
+#import "NSMutableArray+ZyCategory.h"
+#import "NSString+ZyCategory.h"
+#import "NSDate+ZyCategory.h"
+#import "NSUserDefaults+ZyCategory.h"
 
 
+//自定义工具包
 #import "ZyNetwork.h"
 #import "ZyApi.h"
 #import "ZyRouter.h"
+#import "ZyUtils.h"
+#import "ZyConstant.h"
+
 
 //自定义base控件
 #import "ZyBaseTableVIew.h"

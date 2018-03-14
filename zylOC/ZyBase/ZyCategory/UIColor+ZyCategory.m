@@ -18,8 +18,7 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:1.0f];
 }
 
-#pragma mark - 随机颜色（十六进制）
-+ (NSString *)zy_RandomColorSixteen{
++ (UIColor *)zy_RandomColorSixteen{
     NSString *colorString = @"";
     NSArray *colorArray = @[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9",@"a", @"b", @"c", @"d", @"e", @"f"];
     
@@ -29,8 +28,9 @@
         NSString *string = colorArray[r];
         colorString = [NSString stringWithFormat:@"%@%@", colorString, string];
     }
+    
     NSLog(@"随机颜色为：%@", colorString);
-    return colorString;
+    return [self zy_ColorWithHexString:colorString];
 }
 
 + (UIColor *)zy_ColorWithHexString: (NSString *)color{

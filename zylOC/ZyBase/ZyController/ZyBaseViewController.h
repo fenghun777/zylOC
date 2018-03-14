@@ -38,7 +38,7 @@
 /*!
  @method
  @brief 后退 简化
- @discussion 
+ 
  @param animated 是否动画
  */
 - (void)backController:(BOOL) animated;
@@ -46,7 +46,7 @@
 /*!
  @method
  @brief 后退几个controller
- @discussion
+ 
  @param lever 几个controller
  @param animated 是否动画
  */
@@ -55,8 +55,6 @@
 /*!
  @method
  @brief 后退最后一个controller
- @discussion
- @param lever 几个controller
  @param animated 是否动画
  */
 - (void) backToRootViewControllerAnimated:(BOOL) animated;
@@ -70,7 +68,6 @@
 /*!
  @method
  @brief push controller 简化
- @discussion
  @param animated 是否动画
  */
 - (void) pushController:(UIViewController *)controller animated:(BOOL) animated;
@@ -78,7 +75,6 @@
 /*!
  @method
  @brief push 多个controller
- @discussion
  @param lever 几个controller
  @param animated 是否动画
  */
