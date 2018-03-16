@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F326415205A187D00E7EA15 /* UIImage+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */; };
+		7F4063FA205BB74700567FF9 /* AllFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4063F9205BB74700567FF9 /* AllFunctionViewController.m */; };
+		7F4063FD205BBDB100567FF9 /* ZyScratchcardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4063FC205BBDB100567FF9 /* ZyScratchcardsView.m */; };
 		7F5C5B092056056800774ED9 /* NSMutableArray+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5C5B082056056800774ED9 /* NSMutableArray+ZyCategory.m */; };
 		7F5C5B0C205609C600774ED9 /* NSString+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5C5B0B205609C600774ED9 /* NSString+ZyCategory.m */; };
 		7F5C5B0F205629EC00774ED9 /* ZyBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5C5B0E205629EC00774ED9 /* ZyBaseCollectionViewCell.m */; };
@@ -45,6 +48,12 @@
 
 /* Begin PBXFileReference section */
 		210CB9D80EDAAF4915ECC474 /* Pods-zylOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zylOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zylOC/Pods-zylOC.debug.xcconfig"; sourceTree = "<group>"; };
+		7F326413205A187D00E7EA15 /* UIImage+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZyCategory.h"; sourceTree = "<group>"; };
+		7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZyCategory.m"; sourceTree = "<group>"; };
+		7F4063F8205BB74700567FF9 /* AllFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllFunctionViewController.h; sourceTree = "<group>"; };
+		7F4063F9205BB74700567FF9 /* AllFunctionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllFunctionViewController.m; sourceTree = "<group>"; };
+		7F4063FB205BBDB100567FF9 /* ZyScratchcardsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZyScratchcardsView.h; sourceTree = "<group>"; };
+		7F4063FC205BBDB100567FF9 /* ZyScratchcardsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZyScratchcardsView.m; sourceTree = "<group>"; };
 		7F5C5B072056056800774ED9 /* NSMutableArray+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ZyCategory.h"; sourceTree = "<group>"; };
 		7F5C5B082056056800774ED9 /* NSMutableArray+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ZyCategory.m"; sourceTree = "<group>"; };
 		7F5C5B0A205609C600774ED9 /* NSString+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZyCategory.h"; sourceTree = "<group>"; };
@@ -213,6 +222,8 @@
 			children = (
 				7FC8EC59205232550053B09B /* LGUIView.h */,
 				7FC8EC5A205232550053B09B /* LGUIView.m */,
+				7F4063FB205BBDB100567FF9 /* ZyScratchcardsView.h */,
+				7F4063FC205BBDB100567FF9 /* ZyScratchcardsView.m */,
 				7FC8EC5D205234BB0053B09B /* ZyBaseTableVIew.h */,
 				7FC8EC5E205234BB0053B09B /* ZyBaseTableVIew.m */,
 				7FC8EC60205237F20053B09B /* ZyBaseTableViewCell.h */,
@@ -234,6 +245,8 @@
 			children = (
 				7FC8EC6820523ADF0053B09B /* ZyBaseViewController.h */,
 				7FC8EC6720523ADF0053B09B /* ZyBaseViewController.m */,
+				7F4063F8205BB74700567FF9 /* AllFunctionViewController.h */,
+				7F4063F9205BB74700567FF9 /* AllFunctionViewController.m */,
 			);
 			path = ZyController;
 			sourceTree = "<group>";
@@ -434,6 +447,8 @@
 				7F9BBCC02058FE620044C0B8 /* NSUserDefaults+ZyCategory.m */,
 				7F9BBCC5205921AB0044C0B8 /* NSDate+ZyCategory.h */,
 				7F9BBCC6205921AB0044C0B8 /* NSDate+ZyCategory.m */,
+				7F326413205A187D00E7EA15 /* UIImage+ZyCategory.h */,
+				7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */,
 			);
 			path = ZyCategory;
 			sourceTree = "<group>";
@@ -591,6 +606,7 @@
 				7F9BBCC4205901380044C0B8 /* DefaultViewController.m in Sources */,
 				7FC8ECC320527FAC0053B09B /* UIColor+ZyCategory.m in Sources */,
 				7FC8EC62205237F20053B09B /* ZyBaseTableViewCell.m in Sources */,
+				7F4063FD205BBDB100567FF9 /* ZyScratchcardsView.m in Sources */,
 				7FC8ECB3205270DB0053B09B /* HomePageViewController.m in Sources */,
 				7FC8ECBF205279AB0053B09B /* HomePageView.m in Sources */,
 				7F5C5B1220562A5800774ED9 /* ZyBaseCollectionReusableView.m in Sources */,
@@ -599,12 +615,14 @@
 				7FC8EC7720525A580053B09B /* ZyUtils.m in Sources */,
 				7FC8ECB6205270E10053B09B /* MineViewController.m in Sources */,
 				7FC8EC6920523ADF0053B09B /* ZyBaseViewController.m in Sources */,
+				7F326415205A187D00E7EA15 /* UIImage+ZyCategory.m in Sources */,
 				7FC8EC5F205234BB0053B09B /* ZyBaseTableVIew.m in Sources */,
 				7FC8EC6D205257F00053B09B /* ZyNetwork.m in Sources */,
 				7FC8EC74205259260053B09B /* ZyErrorModel.m in Sources */,
 				7FC8EC832052674A0053B09B /* ZyRouter.m in Sources */,
 				7FC8ECBC2052796B0053B09B /* ZyBaseCollectionView.m in Sources */,
 				7FC8ECB0205270C40053B09B /* ClassifyViewController.m in Sources */,
+				7F4063FA205BB74700567FF9 /* AllFunctionViewController.m in Sources */,
 				7F9BBCC12058FE620044C0B8 /* NSUserDefaults+ZyCategory.m in Sources */,
 				7FC8EC5B205232550053B09B /* LGUIView.m in Sources */,
 				7FC8EC7A205261E00053B09B /* ZyApi.m in Sources */,
@@ -746,6 +764,7 @@
 				DEVELOPMENT_TEAM = V5SF4D8WMD;
 				GCC_PREFIX_HEADER = "${SRCROOT}/zylOC/ZyConfig/ZyPrefixHeader.pch";
 				INFOPLIST_FILE = zylOC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -766,6 +785,7 @@
 				DEVELOPMENT_TEAM = V5SF4D8WMD;
 				GCC_PREFIX_HEADER = "${SRCROOT}/zylOC/ZyConfig/ZyPrefixHeader.pch";
 				INFOPLIST_FILE = zylOC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

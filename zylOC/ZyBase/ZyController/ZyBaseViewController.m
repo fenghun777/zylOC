@@ -23,11 +23,11 @@
     [self controllerInit];
     //    解决卡顿问题 点击push的按钮后，导航条会跳动，然后导航条下面的view就没有渐变效果，而是瞬间变换的。
     //    然后设置一个背景色以后，就有一个柔顺的过渡效果了
-//    [self.view setBackgroundColor:COLOR_BACKGROUND];
+    [self.view setBackgroundColor:COLOR_BACKGROUND];
     [self setNavigationControllerNavigationBar];
     
 //    设置右划返回
-    [self addRightMoveBack];
+//    [self addRightMoveBack];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

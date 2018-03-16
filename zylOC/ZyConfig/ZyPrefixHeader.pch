@@ -26,6 +26,8 @@
 #import "NSString+ZyCategory.h"
 #import "NSDate+ZyCategory.h"
 #import "NSUserDefaults+ZyCategory.h"
+#import "UIImage+ZyCategory.h"
+
 
 
 //自定义工具包

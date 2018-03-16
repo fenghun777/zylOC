@@ -51,7 +51,11 @@
     lblOrg.layer.mask = maskLayer;
 }
 
++ (CGSize)zy_GetContentSize:(NSString *)content font:(UIFont *)font width:(float)width{
+    CGSize bubbleSize = [content sizeWithFont:font constrainedToSize:CGSizeMake(width , MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
 
+    return bubbleSize;
+}
 
 
 

@@ -12,8 +12,6 @@
 
 @property (nonatomic) BOOL TabBarHidden;//为true下面的tabbar 隐藏    为false的时候下面的tabbar显示
 
-@property (nonatomic) BOOL isSalesMan;//是否为业务员 true为业务员， false为客户 默认客户
-
 /*!
  @method
  @brief 初始化界面

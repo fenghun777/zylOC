@@ -16,7 +16,8 @@
 //获取系统是24小时制或者12小时制
 + (BOOL)zy_DateIs24Or12;
 
-/*标准时间日期描述*/
-+(NSString *)zy_FormattedTime:(NSDate *)thedate;
+//时间戳转化为时间
++ (NSString *)zy_ChangeTimeStamp:(NSString *)timeStamp WithFormat:(NSString *)format;
+
 
 @end

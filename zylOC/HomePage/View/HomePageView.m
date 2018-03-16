@@ -22,6 +22,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+//    Zy_AllFunction
+//    Zy_Default
     [ZyRouter route_pushController:@"Zy_Default"];
 }
 

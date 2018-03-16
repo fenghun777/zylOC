@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zylOC/Common/Controller/DefaultViewController.m"
-            timestampString = "542714640.714251"
+            timestampString = "542887452.008617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-controllerInit"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-touchesMoved:withEvent:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
