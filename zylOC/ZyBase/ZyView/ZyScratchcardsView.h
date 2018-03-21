@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//刮刮乐，刮一刮
 @interface ZyScratchcardsView : UIView
-- (void)clearTouchPoint:(CGPoint)centerPoint;
+- (void)clearTouchPoint:(UITouch *)touch;
 @end

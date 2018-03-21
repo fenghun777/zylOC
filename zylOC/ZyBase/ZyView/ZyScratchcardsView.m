@@ -25,10 +25,11 @@
 
 - (void)initView{
     // 刮出后要展示的图片
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"girl"]];
+    UIImage *image = [UIImage imageNamed:@"girl"];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
     
     // 设置frame
-    imgView.frame = self.bounds;
+    imgView.frame = CGRectMake((WIDTH - 200)/2, (HEIGHT - 200)/2, 200, 200);
     
     // 添加其为子控件
     [self addSubview:imgView];
@@ -102,7 +103,11 @@
     return boundingRect.size;
 }
 
-- (void)clearTouchPoint:(CGPoint)centerPoint{
+- (void)clearTouchPoint:(UITouch *)touch{
+    
+    // 获取在当前view中的坐标
+    CGPoint centerPoint = [touch locationInView:self.coverView];
+    
     // 设置清除点的大小
     CGRect rect = CGRectMake(centerPoint.x, centerPoint.y, 40, 40);
     
@@ -113,7 +118,7 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     // 将coverView的layer映射渲染到上下文中
-    [self.layer renderInContext:ctx];
+    [self.coverView.layer renderInContext:ctx];
     
     // 清除划过位置的图片
     CGContextClearRect(ctx, rect);
