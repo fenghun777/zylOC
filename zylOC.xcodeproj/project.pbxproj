@@ -14,6 +14,7 @@
 		7F5C5B0C205609C600774ED9 /* NSString+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5C5B0B205609C600774ED9 /* NSString+ZyCategory.m */; };
 		7F5C5B0F205629EC00774ED9 /* ZyBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5C5B0E205629EC00774ED9 /* ZyBaseCollectionViewCell.m */; };
 		7F5C5B1220562A5800774ED9 /* ZyBaseCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5C5B1120562A5800774ED9 /* ZyBaseCollectionReusableView.m */; };
+		7F8CEA14206267D60095975A /* ZyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CEA13206267D60095975A /* ZyScrollView.m */; };
 		7F9BBCC12058FE620044C0B8 /* NSUserDefaults+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9BBCC02058FE620044C0B8 /* NSUserDefaults+ZyCategory.m */; };
 		7F9BBCC4205901380044C0B8 /* DefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9BBCC3205901380044C0B8 /* DefaultViewController.m */; };
 		7F9BBCC7205921AB0044C0B8 /* NSDate+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9BBCC6205921AB0044C0B8 /* NSDate+ZyCategory.m */; };
@@ -62,6 +63,8 @@
 		7F5C5B0E205629EC00774ED9 /* ZyBaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZyBaseCollectionViewCell.m; sourceTree = "<group>"; };
 		7F5C5B1020562A5800774ED9 /* ZyBaseCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZyBaseCollectionReusableView.h; sourceTree = "<group>"; };
 		7F5C5B1120562A5800774ED9 /* ZyBaseCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZyBaseCollectionReusableView.m; sourceTree = "<group>"; };
+		7F8CEA12206267D60095975A /* ZyScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZyScrollView.h; sourceTree = "<group>"; };
+		7F8CEA13206267D60095975A /* ZyScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZyScrollView.m; sourceTree = "<group>"; };
 		7F9BBCBF2058FE620044C0B8 /* NSUserDefaults+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+ZyCategory.h"; sourceTree = "<group>"; };
 		7F9BBCC02058FE620044C0B8 /* NSUserDefaults+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+ZyCategory.m"; sourceTree = "<group>"; };
 		7F9BBCC2205901380044C0B8 /* DefaultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultViewController.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				7FC8EC5A205232550053B09B /* LGUIView.m */,
 				7F4063FB205BBDB100567FF9 /* ZyScratchcardsView.h */,
 				7F4063FC205BBDB100567FF9 /* ZyScratchcardsView.m */,
+				7F8CEA12206267D60095975A /* ZyScrollView.h */,
+				7F8CEA13206267D60095975A /* ZyScrollView.m */,
 				7FC8EC5D205234BB0053B09B /* ZyBaseTableVIew.h */,
 				7FC8EC5E205234BB0053B09B /* ZyBaseTableVIew.m */,
 				7FC8EC60205237F20053B09B /* ZyBaseTableViewCell.h */,
@@ -617,6 +622,7 @@
 				7FC8EC6920523ADF0053B09B /* ZyBaseViewController.m in Sources */,
 				7F326415205A187D00E7EA15 /* UIImage+ZyCategory.m in Sources */,
 				7FC8EC5F205234BB0053B09B /* ZyBaseTableVIew.m in Sources */,
+				7F8CEA14206267D60095975A /* ZyScrollView.m in Sources */,
 				7FC8EC6D205257F00053B09B /* ZyNetwork.m in Sources */,
 				7FC8EC74205259260053B09B /* ZyErrorModel.m in Sources */,
 				7FC8EC832052674A0053B09B /* ZyRouter.m in Sources */,

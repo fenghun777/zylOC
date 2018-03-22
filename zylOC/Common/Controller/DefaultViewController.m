@@ -7,6 +7,7 @@
 //
 
 #import "DefaultViewController.h"
+#import "ZyScrollView.h"
 
 @interface DefaultViewController ()
 
@@ -20,18 +21,15 @@
 }
 
 - (void)controllerInit{
-    while (0) {
-        echo(@"ss");
-    }
+  
+    [self func1];
 }
 
-//- (void)func1{
-//    UIImage *image = [UIImage zy_MakeDrawImage:@"ss"];
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//    [self.view addSubview:imageView];
-//    imageView.frame = CGRectMake(10, 10, image.size.width, image.size.height);
-//    echo(@"width:%f /n,height:%f", image.size.width, image.size.height);
-//}
+- (void)func1{
+
+    ZyScrollView * sv = [[ZyScrollView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
+    [self.view addSubview:sv];
+}
 
 
 
