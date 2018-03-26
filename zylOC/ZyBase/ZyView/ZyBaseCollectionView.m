@@ -7,8 +7,6 @@
 //
 
 #import "ZyBaseCollectionView.h"
-#import "ZyBaseCollectionViewCell.h"
-#import "ZyBaseCollectionReusableView.h"
 
 #define CELLID @"cellId"
 #define HEADVIEWID @"headViewId"

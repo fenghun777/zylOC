@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZyBaseCollectionViewCell.h"
+#import "ZyBaseCollectionReusableView.h"
 
 @interface ZyBaseCollectionView : UICollectionView<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NSMutableArray *mainData;

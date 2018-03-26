@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSArray *mainData;
 @property (nonatomic) CGFloat lastContentOffset;
 @property (nonatomic) CGFloat currentContentOffset;
-@property (nonatomic) CGFloat num;//记录
+@property (nonatomic) NSInteger num;//记录 滚动到第几个位置，初始位置为1（即第二张图）
 @end
 
 @implementation ZyScrollView
@@ -22,6 +22,7 @@
 
     self = [super initWithFrame:frame];
     if (self) {
+        _num = 1;
         [self initView];
     }
     return self;
@@ -81,8 +82,8 @@
 //    是否可触发
     [self setUserInteractionEnabled:true];
     
-    // 设置UIScrollView的滚动范围（内容大小）
-    self.contentSize = CGSizeMake(self.frame.size.width * _mainData.count, 0);
+    // 设置UIScrollView的滚动范围（内容大小）如果该参数的width或者height设置为0，则scrollRectToVisible（有动画效果）方法无效，setContentOffset（无动画效果）有效
+    self.contentSize = CGSizeMake(self.frame.size.width * _mainData.count, 10);
     
 //    设置代理
     self.delegate = self;
@@ -129,7 +130,7 @@
     CGFloat x = point.x/self.frame.size.width;
 //    左滑，向左滑动
     if (_lastContentOffset < _currentContentOffset) {
-        _num = x;
+        _num = x + 1;
         if ((point.x == self.frame.size.width * (_mainData.count - 1))&&(point.y == 0)) {
             [scrollView setContentOffset:CGPointMake(self.frame.size.width, 0)];
         }
@@ -142,35 +143,37 @@
     }
 }
 
-//- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-////    结束动画
-//}
-//
-//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-////    返回一个放大或者缩小的视图
-//    UIView *view = [[UIView alloc] init];
-//    return view;
-//}
-//
-//- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view{
-////    开始放大或者缩小
-//
-//}
-//
-//- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
-////    缩放结束时
-//
-//}
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    echo(@"结束动画");
+}
 
-//- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{
-//    //    是否支持滑动至顶部
-//    return true;
-//}
-//
-//- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView{
-////滑动到顶部时调用该方法
-//
-//}
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+//    返回一个放大或者缩小的视图
+    echo(@"");
+    UIView *view = [[UIView alloc] init];
+    return view;
+}
+
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view{
+//    开始放大或者缩小
+    echo(@"");
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
+//    缩放结束时
+    echo(@"");
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{
+    //    是否支持滑动至顶部
+    echo(@"");
+    return true;
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView{
+//滑动到顶部时调用该方法
+    echo(@"");
+}
 
 
 
@@ -193,32 +196,16 @@
 - (void)timerClick{
     _num = _num + 1;
     CGPoint point = self.contentOffset;
-    if ((point.x == self.frame.size.width * _mainData.count)&&(point.y == 0)) {
-        [self setContentOffset:CGPointMake(0, 0)];
+    if ((point.x >= self.frame.size.width * (_mainData.count - 1))&&(point.y == 0)) {
         _num = 1.0;
     }
-    [self setContentOffset:CGPointMake(self.frame.size.width * _num, 0)];
-    
-    [self scrollRectToVisible:<#(CGRect)#> animated:<#(BOOL)#>]
-    
-    
-//    //    减速停止
-//    _currentContentOffset = scrollView.contentOffset.x;
-//    CGPoint point = scrollView.contentOffset;
-//    CGFloat x = point.x/self.frame.size.width;
-//    //    左滑，向左滑动
-//    if (_lastContentOffset < _currentContentOffset) {
-//        _num = x;
-//        if ((point.x == self.frame.size.width * (_mainData.count - 1))&&(point.y == 0)) {
-//            [scrollView setContentOffset:CGPointMake(self.frame.size.width, 0)];
-//        }
-//    }else{
-//        // 右划，向右滚动
-//        _num = x - 1.0;
-//        if ((point.x == 0)&&(point.y == 0)) {
-//            [scrollView setContentOffset:CGPointMake(self.frame.size.width * (_mainData.count - 2), 0)];
-//        }
-//    }
+
+    if (_num == 1.0) {
+        [self scrollRectToVisible:CGRectMake(self.frame.size.width * (_mainData.count - 1), 0, self.frame.size.width, self.frame.size.height) animated:YES];
+        [self setContentOffset:CGPointMake(self.frame.size.width * _num, 0)];
+    }else{
+        [self scrollRectToVisible:CGRectMake(self.frame.size.width * _num, 0, self.frame.size.width, self.frame.size.height) animated:YES];
+    }
 }
 
 @end

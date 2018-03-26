@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F1A9DD22064E037003538B0 /* HomePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1A9DD12064E037003538B0 /* HomePageHeaderView.m */; };
 		7F326415205A187D00E7EA15 /* UIImage+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */; };
 		7F4063FA205BB74700567FF9 /* AllFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4063F9205BB74700567FF9 /* AllFunctionViewController.m */; };
 		7F4063FD205BBDB100567FF9 /* ZyScratchcardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4063FC205BBDB100567FF9 /* ZyScratchcardsView.m */; };
@@ -49,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		210CB9D80EDAAF4915ECC474 /* Pods-zylOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zylOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zylOC/Pods-zylOC.debug.xcconfig"; sourceTree = "<group>"; };
+		7F1A9DD02064E037003538B0 /* HomePageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageHeaderView.h; sourceTree = "<group>"; };
+		7F1A9DD12064E037003538B0 /* HomePageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageHeaderView.m; sourceTree = "<group>"; };
 		7F326413205A187D00E7EA15 /* UIImage+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZyCategory.h"; sourceTree = "<group>"; };
 		7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZyCategory.m"; sourceTree = "<group>"; };
 		7F4063F8205BB74700567FF9 /* AllFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllFunctionViewController.h; sourceTree = "<group>"; };
@@ -387,6 +390,8 @@
 			children = (
 				7FC8ECBD205279AB0053B09B /* HomePageView.h */,
 				7FC8ECBE205279AB0053B09B /* HomePageView.m */,
+				7F1A9DD02064E037003538B0 /* HomePageHeaderView.h */,
+				7F1A9DD12064E037003538B0 /* HomePageHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 				7F9BBCC4205901380044C0B8 /* DefaultViewController.m in Sources */,
 				7FC8ECC320527FAC0053B09B /* UIColor+ZyCategory.m in Sources */,
 				7FC8EC62205237F20053B09B /* ZyBaseTableViewCell.m in Sources */,
+				7F1A9DD22064E037003538B0 /* HomePageHeaderView.m in Sources */,
 				7F4063FD205BBDB100567FF9 /* ZyScratchcardsView.m in Sources */,
 				7FC8ECB3205270DB0053B09B /* HomePageViewController.m in Sources */,
 				7FC8ECBF205279AB0053B09B /* HomePageView.m in Sources */,
