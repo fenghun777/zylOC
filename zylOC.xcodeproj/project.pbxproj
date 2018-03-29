@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		7F1A9DD22064E037003538B0 /* HomePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1A9DD12064E037003538B0 /* HomePageHeaderView.m */; };
+		7F2917A1206B677A00F58899 /* NSMutableArray+ZyRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2917A0206B677A00F58899 /* NSMutableArray+ZyRuntime.m */; };
+		7F2917A4206B67D100F58899 /* NSArray+ZyRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2917A3206B67D100F58899 /* NSArray+ZyRuntime.m */; };
+		7F2917A7206B701800F58899 /* NSURL+ZyRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2917A6206B701800F58899 /* NSURL+ZyRuntime.m */; };
+		7F2917AA206B76B500F58899 /* ZyRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2917A9206B76B500F58899 /* ZyRuntime.m */; };
+		7F2917AD206B8A4000F58899 /* NSMutableDictionary+ZyRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2917AC206B8A4000F58899 /* NSMutableDictionary+ZyRuntime.m */; };
+		7F2917B3206B947500F58899 /* ZyRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2917B2206B947500F58899 /* ZyRuntimeViewController.m */; };
 		7F326415205A187D00E7EA15 /* UIImage+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */; };
 		7F4063FA205BB74700567FF9 /* AllFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4063F9205BB74700567FF9 /* AllFunctionViewController.m */; };
 		7F4063FD205BBDB100567FF9 /* ZyScratchcardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4063FC205BBDB100567FF9 /* ZyScratchcardsView.m */; };
@@ -52,6 +58,18 @@
 		210CB9D80EDAAF4915ECC474 /* Pods-zylOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zylOC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zylOC/Pods-zylOC.debug.xcconfig"; sourceTree = "<group>"; };
 		7F1A9DD02064E037003538B0 /* HomePageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageHeaderView.h; sourceTree = "<group>"; };
 		7F1A9DD12064E037003538B0 /* HomePageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageHeaderView.m; sourceTree = "<group>"; };
+		7F29179F206B677A00F58899 /* NSMutableArray+ZyRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ZyRuntime.h"; sourceTree = "<group>"; };
+		7F2917A0206B677A00F58899 /* NSMutableArray+ZyRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ZyRuntime.m"; sourceTree = "<group>"; };
+		7F2917A2206B67D100F58899 /* NSArray+ZyRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+ZyRuntime.h"; sourceTree = "<group>"; };
+		7F2917A3206B67D100F58899 /* NSArray+ZyRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ZyRuntime.m"; sourceTree = "<group>"; };
+		7F2917A5206B701800F58899 /* NSURL+ZyRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+ZyRuntime.h"; sourceTree = "<group>"; };
+		7F2917A6206B701800F58899 /* NSURL+ZyRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+ZyRuntime.m"; sourceTree = "<group>"; };
+		7F2917A8206B76B500F58899 /* ZyRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZyRuntime.h; sourceTree = "<group>"; };
+		7F2917A9206B76B500F58899 /* ZyRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZyRuntime.m; sourceTree = "<group>"; };
+		7F2917AB206B8A4000F58899 /* NSMutableDictionary+ZyRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+ZyRuntime.h"; sourceTree = "<group>"; };
+		7F2917AC206B8A4000F58899 /* NSMutableDictionary+ZyRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+ZyRuntime.m"; sourceTree = "<group>"; };
+		7F2917B1206B947500F58899 /* ZyRuntimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZyRuntimeViewController.h; sourceTree = "<group>"; };
+		7F2917B2206B947500F58899 /* ZyRuntimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZyRuntimeViewController.m; sourceTree = "<group>"; };
 		7F326413205A187D00E7EA15 /* UIImage+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZyCategory.h"; sourceTree = "<group>"; };
 		7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZyCategory.m"; sourceTree = "<group>"; };
 		7F4063F8205BB74700567FF9 /* AllFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllFunctionViewController.h; sourceTree = "<group>"; };
@@ -149,6 +167,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F29179A206B3E8A00F58899 /* ZyRunloop */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ZyRunloop;
+			sourceTree = "<group>";
+		};
+		7F29179B206B3E8A00F58899 /* ZyRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				7F29179F206B677A00F58899 /* NSMutableArray+ZyRuntime.h */,
+				7F2917A0206B677A00F58899 /* NSMutableArray+ZyRuntime.m */,
+				7F2917A2206B67D100F58899 /* NSArray+ZyRuntime.h */,
+				7F2917A3206B67D100F58899 /* NSArray+ZyRuntime.m */,
+				7F2917A5206B701800F58899 /* NSURL+ZyRuntime.h */,
+				7F2917A6206B701800F58899 /* NSURL+ZyRuntime.m */,
+				7F2917AB206B8A4000F58899 /* NSMutableDictionary+ZyRuntime.h */,
+				7F2917AC206B8A4000F58899 /* NSMutableDictionary+ZyRuntime.m */,
+				7F2917A8206B76B500F58899 /* ZyRuntime.h */,
+				7F2917A9206B76B500F58899 /* ZyRuntime.m */,
+				7F2917B1206B947500F58899 /* ZyRuntimeViewController.h */,
+				7F2917B2206B947500F58899 /* ZyRuntimeViewController.m */,
+			);
+			path = ZyRuntime;
+			sourceTree = "<group>";
+		};
 		7FC8EC25205206440053B09B = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +257,8 @@
 		7FC8EC57205232170053B09B /* ZyBase */ = {
 			isa = PBXGroup;
 			children = (
+				7F29179A206B3E8A00F58899 /* ZyRunloop */,
+				7F29179B206B3E8A00F58899 /* ZyRuntime */,
 				7FC8ECC020527E260053B09B /* ZyCategory */,
 				7FC8EC9020526F2D0053B09B /* ZyThird */,
 				7FC8EC6A205257D40053B09B /* ZySoft */,
@@ -624,6 +670,9 @@
 				7FC8EC652052391A0053B09B /* ZyBaseWebView.m in Sources */,
 				7FC8EC71205258EC0053B09B /* ZyBaseModel.m in Sources */,
 				7FC8EC7720525A580053B09B /* ZyUtils.m in Sources */,
+				7F2917B3206B947500F58899 /* ZyRuntimeViewController.m in Sources */,
+				7F2917AD206B8A4000F58899 /* NSMutableDictionary+ZyRuntime.m in Sources */,
+				7F2917A4206B67D100F58899 /* NSArray+ZyRuntime.m in Sources */,
 				7FC8ECB6205270E10053B09B /* MineViewController.m in Sources */,
 				7FC8EC6920523ADF0053B09B /* ZyBaseViewController.m in Sources */,
 				7F326415205A187D00E7EA15 /* UIImage+ZyCategory.m in Sources */,
@@ -632,6 +681,7 @@
 				7FC8EC6D205257F00053B09B /* ZyNetwork.m in Sources */,
 				7FC8EC74205259260053B09B /* ZyErrorModel.m in Sources */,
 				7FC8EC832052674A0053B09B /* ZyRouter.m in Sources */,
+				7F2917A1206B677A00F58899 /* NSMutableArray+ZyRuntime.m in Sources */,
 				7FC8ECBC2052796B0053B09B /* ZyBaseCollectionView.m in Sources */,
 				7FC8ECB0205270C40053B09B /* ClassifyViewController.m in Sources */,
 				7F4063FA205BB74700567FF9 /* AllFunctionViewController.m in Sources */,
@@ -639,12 +689,14 @@
 				7FC8EC5B205232550053B09B /* LGUIView.m in Sources */,
 				7FC8EC7A205261E00053B09B /* ZyApi.m in Sources */,
 				7F5C5B0C205609C600774ED9 /* NSString+ZyCategory.m in Sources */,
+				7F2917A7206B701800F58899 /* NSURL+ZyRuntime.m in Sources */,
 				7F5C5B0F205629EC00774ED9 /* ZyBaseCollectionViewCell.m in Sources */,
 				7FC8EC7D2052626C0053B09B /* ZyItemsModel.m in Sources */,
 				7F5C5B092056056800774ED9 /* NSMutableArray+ZyCategory.m in Sources */,
 				7FC8EC4D205209AD0053B09B /* ZyBaseAppDelegate.m in Sources */,
 				7F9BBCC7205921AB0044C0B8 /* NSDate+ZyCategory.m in Sources */,
 				7FC8EC802052661D0053B09B /* ZyConstant.m in Sources */,
+				7F2917AA206B76B500F58899 /* ZyRuntime.m in Sources */,
 				7FC8EC41205206450053B09B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

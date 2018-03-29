@@ -89,7 +89,7 @@ typedef void (^UMPlaunchFinishBlock)(void);
 /** 注册RemoteNotification的类型
  @brief 分别针对iOS8以下版本及iOS8及以上开启推送消息推送。
  默认的时候是sound，badge ,alert三个功能全部打开。
- @param categories 交互式推送行为分类。可以具体查看demo。
+ @param categories8 交互式推送行为分类。可以具体查看demo。
  */
 + (void)registerForRemoteNotifications:(nullable NSSet<UIUserNotificationCategory *> *)categories8;
 

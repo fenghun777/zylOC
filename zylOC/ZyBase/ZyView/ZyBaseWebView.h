@@ -14,23 +14,23 @@ typedef void(^GetWebSizeBlock)(CGRect frame);//重新设置web的size
 @property (nonatomic, strong) GetWebTitleBlock getWebTitleBlock;
 @property (nonatomic, strong) GetWebSizeBlock getWebSizeBlock;
 /*!
- @method
- @brief 加载Url
- @param url
+* @method
+* @brief 加载Url
+* @param url 传入的网址
  */
-- (void) ZyLoadUrl:(NSString *) url;
+- (void) zyLoadUrl:(NSString *)url;
 
 /*!
  @method 读取本地HTML
  @brief 加载Url
- @param url
+ @param url 传入的网址
  */
-- (void) ZyLoadLocationUrl:(NSString *) url;
+- (void) zyLoadLocationUrl:(NSString *) url;
 
 /*!
  @method 读取无参数HTML
  @brief 加载Url
- @param url
+ @param url 传入的网址
  */
-- (void) ZyLoadNoneParaUrl:(NSString *) url;
+- (void) zyLoadNoneParaUrl:(NSString *) url;
 @end

@@ -8,12 +8,18 @@
 
 #import "ZyScrollView.h"
 
+
+typedef void(^RunloopBlock)(void);
+
 @interface ZyScrollView ()<UIScrollViewDelegate>
-@property (nonatomic, strong) NSTimer *timer;
+
+//timer 定义定时器
+@property (nonatomic, strong) dispatch_source_t timer;
 @property (nonatomic, strong) NSArray *mainData;
 @property (nonatomic) CGFloat lastContentOffset;
 @property (nonatomic) CGFloat currentContentOffset;
 @property (nonatomic) NSInteger num;//记录 滚动到第几个位置，初始位置为1（即第二张图）
+//@property (nonatomic, strong) RunloopBlock runloopBlock;
 @end
 
 @implementation ZyScrollView
@@ -24,9 +30,42 @@
     if (self) {
         _num = 1;
         [self initView];
+        [self addRunloopObserver];
     }
     return self;
 }
+
+static void callBack(){
+    echo(@"回调");
+}
+
+- (void)addRunloopObserver{
+//    拿到当前runloop
+    CFRunLoopRef runloop = CFRunLoopGetCurrent();
+    
+//    定义一个上下文
+    CFRunLoopObserverContext context = {
+        0,
+        (__bridge void *)(self),
+        &CFRetain,
+        &CFRelease,
+        NULL
+    };
+    
+//    定义一个观察者
+    static CFRunLoopObserverRef defaultModeObserver;
+    
+//    创建观察者
+    defaultModeObserver = CFRunLoopObserverCreate(NULL, kCFRunLoopAfterWaiting, YES, 0, &callBack, &context);
+    
+//    添加Runloop的观察者
+    CFRunLoopAddObserver(runloop, defaultModeObserver, kCFRunLoopDefaultMode);
+    
+//    c语言有Creat 需要release
+    CFRelease(defaultModeObserver);
+}
+
+
 
 - (void)initView{
 //    如果要无限循环四张图片，那么需要把第一张拼接到最后面，最后一张拼到最前进行过渡
@@ -88,9 +127,35 @@
 //    设置代理
     self.delegate = self;
     
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerClick) userInfo:@"timer" repeats:true];
+//    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerClick) userInfo:@"timer" repeats:true];
+    [self setTimer];
 }
+
+//设置一个定时器
+- (void)setTimer{
+    //    创建一个队列
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    
+    //    创建一个定时器
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    
+//    设置定时器
+    dispatch_time_t startTime = DISPATCH_TIME_NOW;
+    dispatch_time_t interval = 1.0 * NSEC_PER_SEC;//1000000000
+    dispatch_source_set_timer(self.timer, startTime, interval, 0);
+    
+//    设置回调
+    dispatch_source_set_event_handler(self.timer, ^{
+        NSLog(@"------%@", [NSThread currentThread]);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self timerClick];
+        }];
+    });
+    
+    //    启动定时器
+    dispatch_resume(self.timer);
+}
+
 
 //    MARK: 实现代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -144,7 +209,7 @@
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-    echo(@"结束动画");
+//    echo(@"不释放会一直调用，结束动画");
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
@@ -174,24 +239,6 @@
 //滑动到顶部时调用该方法
     echo(@"");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 - (void)timerClick{
     _num = _num + 1;

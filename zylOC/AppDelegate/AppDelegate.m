@@ -113,7 +113,7 @@
 }
 
 //iOS10新增：处理前台收到通知的代理方法
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler NS_AVAILABLE_IOS(10_0)
 {
     NSDictionary *userInfo = notification.request.content.userInfo;
     //[self easemobApplication:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo];
@@ -146,7 +146,7 @@
 }
 
 //iOS10新增：处理后台点击通知的代理方法
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler NS_AVAILABLE_IOS(10_0){
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if (@available(iOS 10.0, *)) {
         if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
@@ -189,7 +189,7 @@
         navController.tabBarItem = [[UITabBarItem alloc] initWithTitle:[dicControler valueForKey:@"title"] image:imageUnSelected selectedImage:imageSelected];
         
          //未选中字体颜色
-//        [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor yellowColor],NSFontAttributeName:FONT(14)} forState:UIControlStateNormal];
+        [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor yellowColor],NSFontAttributeName:FONT(14)} forState:UIControlStateNormal];
         
         //选中字体颜色
         [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:FONT(14)} forState:UIControlStateSelected];

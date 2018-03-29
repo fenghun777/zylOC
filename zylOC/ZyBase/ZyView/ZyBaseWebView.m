@@ -287,13 +287,13 @@
 }
 
 //当用户触摸元素时webView(_:shouldPreviewElement:)立即被调用。返回false将完全禁用该元素的预览，并且阻止其他方法的调用。返回true将提供一个自定义视图控制的机会
-- (BOOL)webView:(WKWebView *)webView shouldPreviewElement:(WKPreviewElementInfo *)elementInfo{
+- (BOOL)webView:(WKWebView *)webView shouldPreviewElement:(WKPreviewElementInfo *)elementInfo NS_AVAILABLE_IOS(10_0){
     echo(@"函数名:%s", __FUNCTION__);
     return false;
 }
 
 //如果用户输入Peek，那么webView(_:previewingViewControllerForElement:defaultActions:)为其提供了一个定制视图控制器的机会。返回任何非空视图控制器都会导致视图控制器显示为Peek预览。defaultActions参数是一个活动数组，WebKit Webkit默认使用它作为previewActionItems。如果想要使用这些活动中的任何一个，你只需从视图控制器的previewActionItems执行结果中返回即可,更新后的WKWebView API支持对超链接的预览，为用户呈现自定义视图。通过这个API，你可以通过Peek和Pop手势来触发预览视图，避免跳转去Safari，除此之外，你还可以自定义预览行为
-- (nullable UIViewController *)webView:(WKWebView *)webView previewingViewControllerForElement:(WKPreviewElementInfo *)elementInfo defaultActions:(NSArray<id <WKPreviewActionItem>> *)previewActions{
+- (nullable UIViewController *)webView:(WKWebView *)webView previewingViewControllerForElement:(WKPreviewElementInfo *)elementInfo defaultActions:(NSArray<id <WKPreviewActionItem>> *)previewActions NS_AVAILABLE_IOS(10_0){
     echo(@"函数名:%s", __FUNCTION__);
     UIViewController *controller = [[UIViewController alloc]init];
     
@@ -322,7 +322,7 @@
     }
 }
 
-- (void) ZyLoadUrl:(NSString *) url{
+- (void) zyLoadUrl:(NSString *) url{
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 //    parameters = [ZyUtils clientPrepareHttpParameters:[parameters mutableCopy]];
 //    [parameters setObject:[ZyUtils timeStamp] forKey:@"t"];
@@ -342,7 +342,7 @@
     _firstUrl = [request.URL absoluteString];
 }
 
-- (void)ZyLoadLocationUrl:(NSString *)url{
+- (void)zyLoadLocationUrl:(NSString *)url{
     NSString *path = [[NSBundle mainBundle] pathForResource:url ofType:@"html"];
     if(path){
         // iOS9. One year later things are OK.
@@ -357,7 +357,7 @@
     }
 }
 
-- (void) ZyLoadNoneParaUrl:(NSString *) url{
+- (void) zyLoadNoneParaUrl:(NSString *) url{
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [self loadRequest:request];
     _firstUrl = [request.URL absoluteString];
