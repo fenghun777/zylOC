@@ -14,7 +14,7 @@
 //MARK: App Store版
 
 //友盟相关数据
-#define  UM_PushKey                   @""
+#define  UM_PushKey                   @"sssssdfasdfasdf "
 #define  UM_PushSecret                @""
 
 #define  AMap_Key                @""
