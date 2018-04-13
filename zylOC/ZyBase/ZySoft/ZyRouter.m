@@ -8,6 +8,7 @@
 
 #import "ZyRouter.h"
 #import "ZyBaseViewController.h"
+#import "ZyTabBarController.h"
 
 @implementation ZyRouter
 
@@ -55,8 +56,8 @@
 + (UIViewController *)route_getVisibleViewControllerFrom:(UIViewController *) vc{
     if ([vc isKindOfClass:[UINavigationController class]]) {
         return [ZyRouter route_getVisibleViewControllerFrom:[((UINavigationController *) vc) visibleViewController]];
-    } else if ([vc isKindOfClass:[UITabBarController class]]) {
-        return [ZyRouter route_getVisibleViewControllerFrom:[((UITabBarController *) vc) selectedViewController]];
+    } else if ([vc isKindOfClass:[ZyTabBarController class]]) {
+        return [ZyRouter route_getVisibleViewControllerFrom:[((ZyTabBarController *) vc) selectedViewController]];
     } else {
         if (vc.presentedViewController) {
             return [ZyRouter route_getVisibleViewControllerFrom:vc.presentedViewController];
