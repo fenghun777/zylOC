@@ -15,7 +15,7 @@
     return [NSString stringWithFormat:@"%ld",(long)(arc4random() % max) + 1];
 }
 
-+ (void)zy_SetBorderWithView:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width {
++ (UIView *)zy_SetBorderWithView:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width {
     if (top) {
         CALayer *layer = [CALayer layer];
         layer.frame = CGRectMake(0, 0, view.frame.size.width, width);
@@ -39,7 +39,8 @@
         layer.frame = CGRectMake(view.frame.size.width - width, 0, width, view.frame.size.height);
         layer.backgroundColor = color.CGColor;
         [view.layer addSublayer:layer];
-    }    
+    }
+    return view;
 }
 
 + (void)zy_SetBorderCorner:(UILabel *)lblOrg size:(CGSize)size{
@@ -53,7 +54,6 @@
 
 + (CGSize)zy_GetContentSize:(NSString *)content font:(UIFont *)font width:(float)width{
     CGSize bubbleSize = [content sizeWithFont:font constrainedToSize:CGSizeMake(width , MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
-
     return bubbleSize;
 }
 

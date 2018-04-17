@@ -12,7 +12,7 @@
 
 @implementation ZyRouter
 
-+ (void)route_pushController:(NSString *)routeStr{
++ (void)zy_route_pushController:(NSString *)routeStr{
     echo(@"界面跳转===%@", routeStr);
     if (routeStr != nil&&![routeStr isEqualToString:@""]) {
         NSArray *arrRoute = [routeStr componentsSeparatedByString:@"/"];
@@ -27,11 +27,11 @@
             }
         }
         
-        NSString *controllerStr = [ZyRouter route_getControllerName:route];
+        NSString *controllerStr = [ZyRouter zy_route_getControllerName:route];
         Class c = NSClassFromString([NSString stringWithFormat:@"%@", controllerStr]);
         ZyBaseViewController *basecontroller = [c new];
         
-        UIViewController *vcRoot = [ZyRouter route_visibleViewController];
+        UIViewController *vcRoot = [ZyRouter zy_route_visibleViewController];
         if ([vcRoot isKindOfClass:[ZyBaseViewController class]]) {
             ZyBaseViewController *yvc = (ZyBaseViewController *)vcRoot;
             [yvc pushController:basecontroller];
@@ -47,27 +47,27 @@
 }
 
 //下面两个函数获取当前控制器
-+ (UIViewController *)route_visibleViewController{
++ (UIViewController *)zy_route_visibleViewController{
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
     UIViewController *rootViewController = window.rootViewController;
-    return [ZyRouter route_getVisibleViewControllerFrom:rootViewController];
+    return [ZyRouter zy_route_getVisibleViewControllerFrom:rootViewController];
 }
 
-+ (UIViewController *)route_getVisibleViewControllerFrom:(UIViewController *) vc{
++ (UIViewController *)zy_route_getVisibleViewControllerFrom:(UIViewController *) vc{
     if ([vc isKindOfClass:[UINavigationController class]]) {
-        return [ZyRouter route_getVisibleViewControllerFrom:[((UINavigationController *) vc) visibleViewController]];
+        return [ZyRouter zy_route_getVisibleViewControllerFrom:[((UINavigationController *) vc) visibleViewController]];
     } else if ([vc isKindOfClass:[ZyTabBarController class]]) {
-        return [ZyRouter route_getVisibleViewControllerFrom:[((ZyTabBarController *) vc) selectedViewController]];
+        return [ZyRouter zy_route_getVisibleViewControllerFrom:[((ZyTabBarController *) vc) selectedViewController]];
     } else {
         if (vc.presentedViewController) {
-            return [ZyRouter route_getVisibleViewControllerFrom:vc.presentedViewController];
+            return [ZyRouter zy_route_getVisibleViewControllerFrom:vc.presentedViewController];
         } else {
             return vc;
         }
     }
 }
 
-+ (NSString *)route_getControllerName:(NSString *)route;{
++ (NSString *)zy_route_getControllerName:(NSString *)route;{
     NSDictionary *dicController =@{
                                    @"Zy_Web":@"WebViewController",//跳转到网页
                                    @"Zy_Default":@"DefaultViewController",//跳转到默认网页
@@ -78,6 +78,7 @@
         route = [NSString stringWithFormat:@"%@",dicController[route]];
     }else{
 //        [YgUI showMessage:@"敬请期待"];
+        return @"";
     }
     return route;
 }

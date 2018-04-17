@@ -10,15 +10,30 @@
 
 @interface ZyRouter : NSObject
 
-//跳转到相应控制器
-+ (void)route_pushController:(NSString *)routeStr;
+/*!
+ @method 跳转到相应控制器
+ @brief 弹出框
+ @param routeStr 跳转到相应界面的key
+ @
+ */
++ (void)zy_route_pushController:(NSString *)routeStr;
 
-//获取当前控制器
-+ (UIViewController *)route_visibleViewController;
+/**
+ * @brief 获取当前控制器。
+ */
++ (UIViewController *)zy_route_visibleViewController;
 
-//判断当前控制器类型，并获得当前控制器
-+ (UIViewController *)route_getVisibleViewControllerFrom:(UIViewController *) vc;
+/**
+ * @brief 判断当前控制器类型，并获得当前控制器。
+ * @param vc 需要上传的信息。
+ * @return 返回当前控制器
+ */
++ (UIViewController *)zy_route_getVisibleViewControllerFrom:(UIViewController *) vc;
 
-//获取跳转到的控制器的名称
-+ (NSString *)route_getControllerName:(NSString *)route;
+/**
+ * @brief 获取跳转到的控制器的名称。
+ * @param route 自定义的key，通过key获取控制器的名称
+ * @return 成功执行返回需要到达的控制器的名称，否则返回空字符串@“”。
+ */
++ (NSString *)zy_route_getControllerName:(NSString *)route;
 @end

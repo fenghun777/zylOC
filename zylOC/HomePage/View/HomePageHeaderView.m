@@ -17,7 +17,7 @@
 - (void)initView{
     ZyScrollView *sv = [[ZyScrollView alloc] initWithFrame:CGRectMake(10, 10, WIDTH - 20, WIDTH - 40)];
     [self addSubview:sv];
-    [sv setMainData:@[@"", @"", @"", @"", @"", @""]];
+    [sv setMainData:@[@"zy_ rotation_0", @"zy_ rotation_1", @"zy_ rotation_2", @"zy_ rotation_3", @"zy_ rotation_4", @"zy_ rotation_5"]];
 }
 
 @end

@@ -25,4 +25,10 @@
     [userDefaults synchronize];
 }
 
++ (id)zy_GetValueForKey:(NSString *)key{
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    id value = [userdefaults objectForKey:key];
+    return value;
+}
+
 @end

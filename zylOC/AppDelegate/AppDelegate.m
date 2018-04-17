@@ -92,7 +92,7 @@
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     echo(@"%@", error);
-    [ZyRouter route_visibleViewController];
+    [ZyRouter zy_route_visibleViewController];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -252,7 +252,7 @@
 //跳转到登录界面
 - (void)signInApp{
     SignInViewController *vc = [[SignInViewController alloc]init];
-    UIViewController *uivc = [ZyRouter route_visibleViewController];
+    UIViewController *uivc = [ZyRouter zy_route_visibleViewController];
     [uivc presentViewController:vc animated:true completion:^{
         
     }];
@@ -343,7 +343,7 @@
 //收到通知 进行统一处理
 - (void)onReceiveZyMessage:(NSDictionary *)dicInfo{
     echo(@"%@", dicInfo);
-    [ZyRouter route_pushController:dicInfo[@"cmd"]];
+    [ZyRouter zy_route_pushController:dicInfo[@"cmd"]];
     // TODO 添加本地推送通知
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController.childViewControllers.lastObject;
     NSInteger badgeValue = tabBarController.tabBar.items[2].badgeValue.intValue;

@@ -13,4 +13,7 @@
 //            删除所有存储在userdefault里的缓存
 + (void)zy_ResetDefaults;
 
+//根据key获取NSUserDefaults的值
++ (id)zy_GetValueForKey:(NSString *)key;
+
 @end

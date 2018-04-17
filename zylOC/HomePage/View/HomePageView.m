@@ -54,7 +54,7 @@
     
 //    Zy_AllFunction
 //    Zy_Default
-    [ZyRouter route_pushController:@"Zy_Default"];
+    [ZyRouter zy_route_pushController:@"Zy_Default"];
 }
 
 

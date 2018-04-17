@@ -13,5 +13,4 @@
 //MARK:移动数组的某一项到第一项
 + (NSMutableArray *)zy_ArrayByMovingItemToFirst:(NSMutableArray *)array withItemIndexToMove:(NSInteger)index;
 
-
 @end
