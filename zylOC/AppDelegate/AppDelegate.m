@@ -41,6 +41,7 @@
 //    进入app主界面
     [self enterApp];
 
+    echo(@"ceshi");
     return YES;
 }
 
