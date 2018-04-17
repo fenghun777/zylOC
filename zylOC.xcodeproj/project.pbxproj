@@ -54,6 +54,9 @@
 		87ECEE1D7880552DE66B6F32 /* libPods-zylOC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1139E569388C516FB639078 /* libPods-zylOC.a */; };
 		CB02A5C4208087B8005199A2 /* UIButton+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CB02A5C3208087B8005199A2 /* UIButton+ZyCategory.m */; };
 		CB8F7B2C20805CB900993DE7 /* ZyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7B2B20805CB900993DE7 /* ZyTabBarController.m */; };
+		F38033712085848000444552 /* UITextField+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F38033702085848000444552 /* UITextField+ZyCategory.m */; };
+		F38033742085863C00444552 /* UILabel+Zy_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = F38033732085863C00444552 /* UILabel+Zy_Category.m */; };
+		F3803377208587E800444552 /* UIImageView+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F3803376208587E800444552 /* UIImageView+ZyCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +161,12 @@
 		CB8F7B2B20805CB900993DE7 /* ZyTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZyTabBarController.m; sourceTree = "<group>"; };
 		CF7139AEF74213356BC12902 /* Pods-zylOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zylOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-zylOC/Pods-zylOC.release.xcconfig"; sourceTree = "<group>"; };
 		D1139E569388C516FB639078 /* libPods-zylOC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zylOC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F380336F2085848000444552 /* UITextField+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+ZyCategory.h"; sourceTree = "<group>"; };
+		F38033702085848000444552 /* UITextField+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ZyCategory.m"; sourceTree = "<group>"; };
+		F38033722085863C00444552 /* UILabel+Zy_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Zy_Category.h"; sourceTree = "<group>"; };
+		F38033732085863C00444552 /* UILabel+Zy_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Zy_Category.m"; sourceTree = "<group>"; };
+		F3803375208587E800444552 /* UIImageView+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZyCategory.h"; sourceTree = "<group>"; };
+		F3803376208587E800444552 /* UIImageView+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZyCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +524,12 @@
 				7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */,
 				CB02A5C2208087B8005199A2 /* UIButton+ZyCategory.h */,
 				CB02A5C3208087B8005199A2 /* UIButton+ZyCategory.m */,
+				F380336F2085848000444552 /* UITextField+ZyCategory.h */,
+				F38033702085848000444552 /* UITextField+ZyCategory.m */,
+				F38033722085863C00444552 /* UILabel+Zy_Category.h */,
+				F38033732085863C00444552 /* UILabel+Zy_Category.m */,
+				F3803375208587E800444552 /* UIImageView+ZyCategory.h */,
+				F3803376208587E800444552 /* UIImageView+ZyCategory.m */,
 			);
 			path = ZyCategory;
 			sourceTree = "<group>";
@@ -618,9 +633,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMapNavi.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -657,7 +670,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -693,18 +706,21 @@
 				7FC8EC74205259260053B09B /* ZyErrorModel.m in Sources */,
 				7FC8EC832052674A0053B09B /* ZyRouter.m in Sources */,
 				7F2917A1206B677A00F58899 /* NSMutableArray+ZyRuntime.m in Sources */,
+				F38033742085863C00444552 /* UILabel+Zy_Category.m in Sources */,
 				7FC8ECBC2052796B0053B09B /* ZyBaseCollectionView.m in Sources */,
 				7FC8ECB0205270C40053B09B /* ClassifyViewController.m in Sources */,
 				7F4063FA205BB74700567FF9 /* AllFunctionViewController.m in Sources */,
 				7F9BBCC12058FE620044C0B8 /* NSUserDefaults+ZyCategory.m in Sources */,
 				7FC8EC5B205232550053B09B /* LGUIView.m in Sources */,
 				7FC8EC7A205261E00053B09B /* ZyApi.m in Sources */,
+				F3803377208587E800444552 /* UIImageView+ZyCategory.m in Sources */,
 				7F5C5B0C205609C600774ED9 /* NSString+ZyCategory.m in Sources */,
 				7F2917A7206B701800F58899 /* NSURL+ZyRuntime.m in Sources */,
 				7F5C5B0F205629EC00774ED9 /* ZyBaseCollectionViewCell.m in Sources */,
 				7FC8EC7D2052626C0053B09B /* ZyItemsModel.m in Sources */,
 				7F5C5B092056056800774ED9 /* NSMutableArray+ZyCategory.m in Sources */,
 				7FC8EC4D205209AD0053B09B /* ZyBaseAppDelegate.m in Sources */,
+				F38033712085848000444552 /* UITextField+ZyCategory.m in Sources */,
 				7F9BBCC7205921AB0044C0B8 /* NSDate+ZyCategory.m in Sources */,
 				CB8F7B2C20805CB900993DE7 /* ZyTabBarController.m in Sources */,
 				7FC8EC802052661D0053B09B /* ZyConstant.m in Sources */,

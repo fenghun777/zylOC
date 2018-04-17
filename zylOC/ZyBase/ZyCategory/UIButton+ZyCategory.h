@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UIButton (ZyCategory)
-//+ (UIButton *)init
++ (UIButton *) zy_InitWithImage:(NSArray *)image radius:(float)radius bkHandler:(void (^)(id sender))handler;
++ (UIButton *) zy_InitWithTitle:(NSString *)title font:(UIFont*)font colors:(NSArray *)color bgcolors:(id)bgcolor radius:(float)radius bkHandler:(void (^)(id sender))handler;
 @end

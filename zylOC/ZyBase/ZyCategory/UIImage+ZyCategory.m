@@ -75,8 +75,52 @@
     return newImage;
 }
 
+#pragma mark 根据宽等比压缩图片
++ (UIImage *)zy_ResizeImage:(UIImage *)image ByWidth:(float) width{
+    CGSize size = CGSizeMake(width, 0);
+    return [UIImage zy_ResizeImage:image FromSize:size];
+}
 
+#pragma mark 等比压缩图片
++ (UIImage *)zy_ResizeImage:(UIImage *)image FromSize:(CGSize)fromSize{
+    if (!image) {
+        return nil;
+    }
+    fromSize = [self zy_ResizeSize:image.size fromsize:fromSize];
+    if (fromSize.width == image.size.width) {
+        return image;
+    }
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        UIGraphicsBeginImageContextWithOptions(fromSize, NO, [UIScreen mainScreen].scale);
+    } else {
+        UIGraphicsBeginImageContext(fromSize);
+    }
+    // 绘制改变大小的图片
+    [image drawInRect:CGRectMake(0,0, fromSize.width, fromSize.height)];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage =UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    //返回新的改变大小后的图片
+    return scaledImage;
+}
 
++ (CGSize)zy_ResizeSize:(CGSize)osize fromsize:(CGSize)fromSize{
+    float bl = MIN(fromSize.width / osize.width, fromSize.height / osize.height);
+    if (bl == 0) {
+        bl = MAX(fromSize.width / osize.width, fromSize.height / osize.height);
+    }
+    
+    if (osize.width <= fromSize.width && osize.height <= fromSize.height) {
+        return osize;
+    }else{
+        fromSize.width = osize.width * bl;
+        fromSize.height = osize.height * bl;
+    }
+    return fromSize;
+}
 
 
 

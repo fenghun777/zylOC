@@ -10,4 +10,5 @@
 
 @interface ZyScrollView : UIScrollView
 - (void)initView;
+@property (nonatomic, strong) NSArray *mainData;
 @end

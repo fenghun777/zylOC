@@ -15,7 +15,6 @@ typedef void(^RunloopBlock)(void);
 
 //timer 定义定时器
 @property (nonatomic, strong) dispatch_source_t timer;
-@property (nonatomic, strong) NSArray *mainData;
 @property (nonatomic) CGFloat lastContentOffset;
 @property (nonatomic) CGFloat currentContentOffset;
 @property (nonatomic) NSInteger num;//记录 滚动到第几个位置，初始位置为1（即第二张图）
@@ -65,12 +64,26 @@ static void callBack(){
     CFRelease(defaultModeObserver);
 }
 
+- (NSArray *)mainData{
+    if (_mainData == nil) {
+        _mainData = [[NSArray alloc] init];
+    }
+    return _mainData;
+}
 
+//- (void)setMainData:(NSMutableArray *)mainData{
+//    self.mainData = mainData;
+//    
+//}
 
 - (void)initView{
 //    如果要无限循环四张图片，那么需要把第一张拼接到最后面，最后一张拼到最前进行过渡
 //    _mainData = @[@"girl", @"zy_default1", @"girl", @"zy_default1"];
+    
     _mainData = @[@"zy_default1", @"girl", @"zy_default1", @"girl", @"zy_default1", @"girl"];
+    
+    
+    
     for (int i = 0; i < _mainData.count; i++) {
         UIImage *image = [UIImage imageNamed:_mainData[i]];
         UIImageView *ivImage = [[UIImageView alloc] initWithImage:image];
