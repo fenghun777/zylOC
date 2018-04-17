@@ -42,6 +42,7 @@
     [self enterApp];
 
     echo(@"ceshi");
+    echo(@"ceshi1");
     return YES;
 }
 
