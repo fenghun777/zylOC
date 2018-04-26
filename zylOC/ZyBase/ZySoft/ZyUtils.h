@@ -13,15 +13,21 @@
 //MARK: 获取随机数，范围是max
 + (NSString *)zy_random:(NSInteger)max;
 
-//view加border，控制是否给上左下右加边框，可以扩展到button label等控件
+//MARK: view加border，控制是否给上左下右加边框，可以扩展到button label等控件
 + (void)zy_SetBorderColor:(UIView *)view top:(BOOL)top left:(BOOL)left bottom:(BOOL)bottom right:(BOOL)right borderColor:(UIColor *)color borderWidth:(CGFloat)width;
 
-//控制上面的两个角变为圆角（corner 圆角）
+//MARK: 控制上面的两个角变为圆角（corner 圆角）
 + (void)zy_SetBorderCorner:(UILabel *)lblOrg size:(CGSize)size;
 
-
+//MARK:获取字体的size
 + (CGSize)zy_GetContentSize:(NSString *)content font:(UIFont *)font width:(float)width;
-#pragma mark -
+
+#pragma mark - 获取类的属性个数
++ (NSInteger)zy_GetCountOfClass:(id)class;
+
+
+
+
 
 #pragma mark -
 

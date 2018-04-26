@@ -25,7 +25,7 @@
 
 - (void)initView{
     // 刮出后要展示的图片
-    UIImage *image = [UIImage imageNamed:@"girl"];
+    UIImage *image = [UIImage imageNamed:@"girl_1"];
     UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
     
     // 设置frame

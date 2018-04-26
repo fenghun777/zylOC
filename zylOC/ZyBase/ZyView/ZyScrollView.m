@@ -19,7 +19,6 @@ typedef void(^RunloopBlock)(void);
 @property (nonatomic) CGFloat lastContentOffset;
 @property (nonatomic) CGFloat currentContentOffset;
 @property (nonatomic) NSInteger num;//记录 滚动到第几个位置，初始位置为1（即第二张图）
-//@property (nonatomic, strong) RunloopBlock runloopBlock;
 @end
 
 @implementation ZyScrollView
@@ -69,8 +68,8 @@ static void callBack(){
 
 - (void)initView{
 //    如果要无限循环四张图片，那么需要把第一张拼接到最后面，最后一张拼到最前进行过渡
-//    _mainData = @[@"girl", @"zy_default1", @"girl", @"zy_default1"];
-    _mainData = @[@"zy_default1", @"girl", @"zy_default1", @"girl", @"zy_default1", @"girl"];
+//    _mainData = @[@"girl_1", @"zy_default1", @"girl_1", @"zy_default1"];
+    _mainData = @[@"zy_default1", @"girl_1", @"zy_default1", @"girl_1", @"zy_default1", @"girl_1"];
     for (int i = 0; i < _mainData.count; i++) {
         UIImage *image = [UIImage imageNamed:_mainData[i]];
         UIImageView *ivImage = [[UIImageView alloc] initWithImage:image];
@@ -127,7 +126,6 @@ static void callBack(){
 //    设置代理
     self.delegate = self;
     
-//    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerClick) userInfo:@"timer" repeats:true];
     [self setTimer];
 }
 

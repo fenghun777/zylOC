@@ -57,6 +57,18 @@
     return bubbleSize;
 }
 
++ (NSInteger)zy_GetCountOfClass:(id)class{
+    //    Ivar : runtime里面代表成员变量
+    unsigned int count = 0;
+//    Ivar *ivars = class_copyIvarList([UIButton class], &count);
+    Ivar *ivars = class_copyIvarList(class, &count);
+//    获取第一个属性
+    Ivar ivar = ivars[0];
+//    获取第一个属性的 命名
+    const char *name = ivar_getName(ivar);
+    echo(@"====%s", name);
+    return count;
+}
 
 
 
