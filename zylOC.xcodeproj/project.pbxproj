@@ -53,6 +53,11 @@
 		7FC8ECBF205279AB0053B09B /* HomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8ECBE205279AB0053B09B /* HomePageView.m */; };
 		7FC8ECC320527FAC0053B09B /* UIColor+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8ECC220527FAC0053B09B /* UIColor+ZyCategory.m */; };
 		87ECEE1D7880552DE66B6F32 /* libPods-zylOC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1139E569388C516FB639078 /* libPods-zylOC.a */; };
+		CB02A5C4208087B8005199A2 /* UIButton+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CB02A5C3208087B8005199A2 /* UIButton+ZyCategory.m */; };
+		CB8F7B2C20805CB900993DE7 /* ZyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8F7B2B20805CB900993DE7 /* ZyTabBarController.m */; };
+		F38033712085848000444552 /* UITextField+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F38033702085848000444552 /* UITextField+ZyCategory.m */; };
+		F38033742085863C00444552 /* UILabel+Zy_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = F38033732085863C00444552 /* UILabel+Zy_Category.m */; };
+		F3803377208587E800444552 /* UIImageView+ZyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F3803376208587E800444552 /* UIImageView+ZyCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,8 +158,18 @@
 		7FC8ECBE205279AB0053B09B /* HomePageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageView.m; sourceTree = "<group>"; };
 		7FC8ECC120527FAC0053B09B /* UIColor+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZyCategory.h"; sourceTree = "<group>"; };
 		7FC8ECC220527FAC0053B09B /* UIColor+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZyCategory.m"; sourceTree = "<group>"; };
+		CB02A5C2208087B8005199A2 /* UIButton+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZyCategory.h"; sourceTree = "<group>"; };
+		CB02A5C3208087B8005199A2 /* UIButton+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZyCategory.m"; sourceTree = "<group>"; };
+		CB8F7B2A20805CB900993DE7 /* ZyTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZyTabBarController.h; sourceTree = "<group>"; };
+		CB8F7B2B20805CB900993DE7 /* ZyTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZyTabBarController.m; sourceTree = "<group>"; };
 		CF7139AEF74213356BC12902 /* Pods-zylOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zylOC.release.xcconfig"; path = "Pods/Target Support Files/Pods-zylOC/Pods-zylOC.release.xcconfig"; sourceTree = "<group>"; };
 		D1139E569388C516FB639078 /* libPods-zylOC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zylOC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F380336F2085848000444552 /* UITextField+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+ZyCategory.h"; sourceTree = "<group>"; };
+		F38033702085848000444552 /* UITextField+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ZyCategory.m"; sourceTree = "<group>"; };
+		F38033722085863C00444552 /* UILabel+Zy_Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Zy_Category.h"; sourceTree = "<group>"; };
+		F38033732085863C00444552 /* UILabel+Zy_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Zy_Category.m"; sourceTree = "<group>"; };
+		F3803375208587E800444552 /* UIImageView+ZyCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZyCategory.h"; sourceTree = "<group>"; };
+		F3803376208587E800444552 /* UIImageView+ZyCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZyCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +317,8 @@
 			children = (
 				7FC8EC6820523ADF0053B09B /* ZyBaseViewController.h */,
 				7FC8EC6720523ADF0053B09B /* ZyBaseViewController.m */,
+				CB8F7B2A20805CB900993DE7 /* ZyTabBarController.h */,
+				CB8F7B2B20805CB900993DE7 /* ZyTabBarController.m */,
 				7F4063F8205BB74700567FF9 /* AllFunctionViewController.h */,
 				7F4063F9205BB74700567FF9 /* AllFunctionViewController.m */,
 			);
@@ -510,6 +527,14 @@
 				7F9BBCC6205921AB0044C0B8 /* NSDate+ZyCategory.m */,
 				7F326413205A187D00E7EA15 /* UIImage+ZyCategory.h */,
 				7F326414205A187D00E7EA15 /* UIImage+ZyCategory.m */,
+				CB02A5C2208087B8005199A2 /* UIButton+ZyCategory.h */,
+				CB02A5C3208087B8005199A2 /* UIButton+ZyCategory.m */,
+				F380336F2085848000444552 /* UITextField+ZyCategory.h */,
+				F38033702085848000444552 /* UITextField+ZyCategory.m */,
+				F38033722085863C00444552 /* UILabel+Zy_Category.h */,
+				F38033732085863C00444552 /* UILabel+Zy_Category.m */,
+				F3803375208587E800444552 /* UIImageView+ZyCategory.h */,
+				F3803376208587E800444552 /* UIImageView+ZyCategory.m */,
 			);
 			path = ZyCategory;
 			sourceTree = "<group>";
@@ -661,6 +686,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FC8ECB9205271400053B09B /* SignInViewController.m in Sources */,
+				CB02A5C4208087B8005199A2 /* UIButton+ZyCategory.m in Sources */,
 				7FC8EC4A205209A10053B09B /* AppDelegate.m in Sources */,
 				7F9BBCC4205901380044C0B8 /* DefaultViewController.m in Sources */,
 				7FC8ECC320527FAC0053B09B /* UIColor+ZyCategory.m in Sources */,
@@ -686,19 +712,23 @@
 				7FC8EC74205259260053B09B /* ZyErrorModel.m in Sources */,
 				7FC8EC832052674A0053B09B /* ZyRouter.m in Sources */,
 				7F2917A1206B677A00F58899 /* NSMutableArray+ZyRuntime.m in Sources */,
+				F38033742085863C00444552 /* UILabel+Zy_Category.m in Sources */,
 				7FC8ECBC2052796B0053B09B /* ZyBaseCollectionView.m in Sources */,
 				7FC8ECB0205270C40053B09B /* ClassifyViewController.m in Sources */,
 				7F4063FA205BB74700567FF9 /* AllFunctionViewController.m in Sources */,
 				7F9BBCC12058FE620044C0B8 /* NSUserDefaults+ZyCategory.m in Sources */,
 				7FC8EC5B205232550053B09B /* LGUIView.m in Sources */,
 				7FC8EC7A205261E00053B09B /* ZyApi.m in Sources */,
+				F3803377208587E800444552 /* UIImageView+ZyCategory.m in Sources */,
 				7F5C5B0C205609C600774ED9 /* NSString+ZyCategory.m in Sources */,
 				7F2917A7206B701800F58899 /* NSURL+ZyRuntime.m in Sources */,
 				7F5C5B0F205629EC00774ED9 /* ZyBaseCollectionViewCell.m in Sources */,
 				7FC8EC7D2052626C0053B09B /* ZyItemsModel.m in Sources */,
 				7F5C5B092056056800774ED9 /* NSMutableArray+ZyCategory.m in Sources */,
 				7FC8EC4D205209AD0053B09B /* ZyBaseAppDelegate.m in Sources */,
+				F38033712085848000444552 /* UITextField+ZyCategory.m in Sources */,
 				7F9BBCC7205921AB0044C0B8 /* NSDate+ZyCategory.m in Sources */,
+				CB8F7B2C20805CB900993DE7 /* ZyTabBarController.m in Sources */,
 				7FC8EC802052661D0053B09B /* ZyConstant.m in Sources */,
 				7F2917AA206B76B500F58899 /* ZyRuntime.m in Sources */,
 				7FC8EC41205206450053B09B /* main.m in Sources */,

@@ -15,6 +15,12 @@
 // 根据文字(汉字，英文，以及各种符号都可以)画默认图
 + (UIImage *)zy_MakeDrawImage:(NSString *)wenzi;
 
+#pragma mark 根据宽等比压缩图片
++ (UIImage *)zy_ResizeImage:(UIImage *)image ByWidth:(float) width;
 
+#pragma mark 等比压缩图片
++ (UIImage *)zy_ResizeImage:(UIImage *)image FromSize:(CGSize) size;
 
+//调整尺寸大小
++ (CGSize)zy_ResizeSize:(CGSize)osize fromsize:(CGSize)fromSize;
 @end

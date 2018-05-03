@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "timg4.jpeg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Connor.jpg",
       "scale" : "2x"
     },
     {

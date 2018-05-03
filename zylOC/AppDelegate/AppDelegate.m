@@ -18,6 +18,8 @@
 
 #import "MineViewController.h"
 
+#import "ZyTabBarController.h"
+
 @interface AppDelegate ()<UNUserNotificationCenterDelegate, UITabBarDelegate, UITabBarControllerDelegate>
 
 @end
@@ -189,14 +191,14 @@
         navController.tabBarItem = [[UITabBarItem alloc] initWithTitle:[dicControler valueForKey:@"title"] image:imageUnSelected selectedImage:imageSelected];
         
          //未选中字体颜色
-        [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor yellowColor],NSFontAttributeName:FONT(14)} forState:UIControlStateNormal];
+        [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:FONT(14)} forState:UIControlStateNormal];
         
         //选中字体颜色
         [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:FONT(14)} forState:UIControlStateSelected];
         [viewControllers addObject:navController];
     }
     
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    ZyTabBarController *tabBarController = [[ZyTabBarController alloc] init];
     tabBarController.viewControllers = viewControllers;
     [tabBarController setDelegate:self];
     UINavigationController *navMain = [[UINavigationController alloc] initWithRootViewController:tabBarController];

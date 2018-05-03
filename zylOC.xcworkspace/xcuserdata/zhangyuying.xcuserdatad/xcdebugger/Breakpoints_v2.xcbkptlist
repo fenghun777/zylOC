@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zylOC/ZyBase/ZyView/ZyScrollView.m"
-            timestampString = "544965077.575359"
+            timestampString = "546520747.844581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "-scrollViewDidEndDecelerating:"
-            landmarkType = "7">
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "ZyScrollView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zylOC/ZyBase/ZyView/ZyScrollView.m"
-            timestampString = "544965077.575943"
+            timestampString = "546520747.845132"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "-timerClick"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-scrollViewShouldScrollToTop:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

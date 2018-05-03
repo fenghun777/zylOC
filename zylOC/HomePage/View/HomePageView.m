@@ -56,8 +56,8 @@
 
 //MARK: cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    CGFloat width = (WIDTH - 60)/3;
-    return CGSizeMake(WIDTH, WIDTH);
+    CGFloat width = (WIDTH - 60)/3;
+    return CGSizeMake(width, WIDTH/3);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
