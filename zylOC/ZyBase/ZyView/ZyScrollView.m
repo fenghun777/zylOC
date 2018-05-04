@@ -17,6 +17,7 @@ typedef void(^RunloopBlock)(void);
 @property (nonatomic, strong) dispatch_source_t timer;
 @property (nonatomic) CGFloat lastContentOffset;
 @property (nonatomic) CGFloat currentContentOffset;
+@property (nonatomic) NSMutableArray *arrImages;
 @property (nonatomic) NSInteger num;//记录 滚动到第几个位置，初始位置为1（即第二张图）
 @end
 
@@ -63,11 +64,11 @@ static void callBack(){
     CFRelease(defaultModeObserver);
 }
 
-- (NSArray *)mainData{
-    if (_mainData == nil) {
-        _mainData = [[NSArray alloc] init];
+- (NSMutableArray *)arrImages{
+    if (_arrImages == nil) {
+        _arrImages = [[NSMutableArray alloc] init];
     }
-    return _mainData;
+    return _arrImages;
 }
 
 //- (void)setMainData:(NSMutableArray *)mainData{
