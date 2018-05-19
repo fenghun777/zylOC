@@ -20,4 +20,6 @@ pod 'AMapNavi' #这个里面包含AMap3DMap 和 AMap2DMap冲突，需要导航�
 
 pod 'MJRefresh'
 
+pod 'JPush'  #极光推送
+
 end

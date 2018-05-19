@@ -25,28 +25,24 @@
     [self func1];
 }
 
+//物理效果
 - (void)func1{
-
-//    NSURL *url = [NSURL URLWithString:@"www.baidu.com。中文"];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    NSLog(@"----%@", request);
-    
-//      数组越界
-//    NSArray *testArray1 = @[@"0", @"1"];
-//    [testArray1 objectAtIndex:4];
-    
-    //  数组中放空值 或者替换的时候 越界 放空值
-//    NSMutableArray *testArray2 = [NSMutableArray array];
-//    NSObject *obj = nil;
-//    [testArray2 objectAtIndex:100];
-//    [testArray2 addObject:obj];
-//    [testArray2 replaceObjectAtIndex:3 withObject:obj];
     
 
+}
 
-//    [ZyUtils zy_GetCountOfClass:[UIButton class]];
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+- (void)func100{
 //    默认帮你把timer加入Runloop
 //    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerRun) userInfo:nil repeats:YES];
     

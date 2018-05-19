@@ -11,4 +11,6 @@
 @interface ZyScrollView : UIScrollView
 - (void)initView;
 @property (nonatomic, strong) NSArray *mainData;
+
+- (void)scrollViewOfWidth:(CGFloat)svWidth andSpaceWidth:(CGFloat)spaceWidth;
 @end

@@ -8,30 +8,35 @@
 
 #import "ZyScrollView.h"
 
+#define IMAGE_WIDTH (self.frame.size.width - 40) //图片的宽度
+#define SPACE_WIDTH 10 //图片间距
 
 typedef void(^RunloopBlock)(void);
-
 @interface ZyScrollView ()<UIScrollViewDelegate>
 
 //timer 定义定时器
 @property (nonatomic, strong) dispatch_source_t timer;
 @property (nonatomic) CGFloat lastContentOffset;
 @property (nonatomic) CGFloat currentContentOffset;
-@property (nonatomic) NSMutableArray *arrImages;
 @property (nonatomic) NSInteger num;//记录 滚动到第几个位置，初始位置为1（即第二张图）
 @end
 
-@implementation ZyScrollView
+@implementation ZyScrollView{
+    CGFloat scroll_width;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame{
-
     self = [super initWithFrame:frame];
     if (self) {
         _num = 1;
-        [self initView];
         [self addRunloopObserver];
     }
     return self;
+}
+
+- (void)layoutSubviews{
+    
+    echo(@"运行方法%s", __FUNCTION__);
 }
 
 static void callBack(){
@@ -64,21 +69,28 @@ static void callBack(){
     CFRelease(defaultModeObserver);
 }
 
-- (NSMutableArray *)arrImages{
-    if (_arrImages == nil) {
-        _arrImages = [[NSMutableArray alloc] init];
+- (void)setMainData:(NSArray *)mainData{
+    _mainData = mainData;
+    if (_mainData == nil) {
+        _mainData = [[NSArray alloc] init];
     }
-    return _arrImages;
+    [self initView];
 }
 
-//- (void)setMainData:(NSMutableArray *)mainData{
-//    self.mainData = mainData;
-//    
-//}
+- (void)scrollViewOfWidth:(CGFloat)svWidth andSpaceWidth:(CGFloat)spaceWidth{
+    
+}
 
 - (void)initView{
+    scroll_width = (IMAGE_WIDTH + SPACE_WIDTH);//每次的滑动距离
 //    如果要无限循环四张图片，那么需要把第一张拼接到最后面，最后一张拼到最前进行过渡
-    _mainData = @[@"zy_default1", @"girl_1", @"zy_default1", @"girl_1", @"zy_default1", @"girl_1"];
+    if (_mainData.count > 1) {
+        NSMutableArray *arrM = [NSMutableArray arrayWithArray:_mainData];
+        [arrM addObject:_mainData.firstObject];
+        [arrM insertObject:_mainData.lastObject atIndex:0];
+        _mainData = nil;
+        _mainData = (NSArray *)arrM;
+    }
 
     for (int i = 0; i < _mainData.count; i++) {
         UIImage *image = [UIImage imageNamed:_mainData[i]];
@@ -86,7 +98,7 @@ static void callBack(){
         ivImage.contentMode = UIViewContentModeScaleAspectFit;
         
         [self addSubview:ivImage];
-        ivImage.frame = CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height);
+        ivImage.frame = CGRectMake((IMAGE_WIDTH + SPACE_WIDTH) * i, 0, IMAGE_WIDTH, self.frame.size.height);
     }
     
     self.backgroundColor = [UIColor yellowColor];
@@ -122,16 +134,17 @@ static void callBack(){
     // 用来记录scrollview滚动的位置
 //    self.contentOffset = CGPointMake(20, 40);
     //        设置初始位置
-    [self setContentOffset:CGPointMake(self.frame.size.width, 0)];
+    [self setContentOffset:CGPointMake(IMAGE_WIDTH - 10, 0)];
     
-    //设置超过子图层的部分裁减掉
+    //clipsToBounds：是指视图上的子视图,如果超出父视图的部分就截取掉,
+//    masksToBounds：是指视图的图层上的子图层,如果超出父图层的部分就截取掉
 //    self.layer.masksToBounds = true;
     
 //    是否可触发
     [self setUserInteractionEnabled:true];
     
     // 设置UIScrollView的滚动范围（内容大小）如果该参数的width或者height设置为0，则scrollRectToVisible（有动画效果）方法无效，setContentOffset（无动画效果）有效
-    self.contentSize = CGSizeMake(self.frame.size.width * _mainData.count, 10);
+    self.contentSize = CGSizeMake(scroll_width * _mainData.count, 10);
     
 //    设置代理
     self.delegate = self;
@@ -205,13 +218,13 @@ static void callBack(){
     if (_lastContentOffset < _currentContentOffset) {
         _num = x + 1;
         if ((point.x == self.frame.size.width * (_mainData.count - 1))&&(point.y == 0)) {
-            [scrollView setContentOffset:CGPointMake(self.frame.size.width, 0)];
+            [scrollView setContentOffset:CGPointMake(scroll_width, 0)];
         }
     }else{
         // 右划，向右滚动
         _num = x - 1.0;
         if ((point.x == 0)&&(point.y == 0)) {
-            [scrollView setContentOffset:CGPointMake(self.frame.size.width * (_mainData.count - 2), 0)];
+            [scrollView setContentOffset:CGPointMake(scroll_width * (_mainData.count - 2), 0)];
         }
     }
 }
@@ -249,18 +262,18 @@ static void callBack(){
 }
 
 - (void)timerClick{
-    _num = _num + 1;
-    CGPoint point = self.contentOffset;
-    if ((point.x >= self.frame.size.width * (_mainData.count - 1))&&(point.y == 0)) {
-        _num = 1.0;
-    }
-
-    if (_num == 1.0) {
-        [self scrollRectToVisible:CGRectMake(self.frame.size.width * (_mainData.count - 1), 0, self.frame.size.width, self.frame.size.height) animated:YES];
-        [self setContentOffset:CGPointMake(self.frame.size.width * _num, 0)];
-    }else{
-        [self scrollRectToVisible:CGRectMake(self.frame.size.width * _num, 0, self.frame.size.width, self.frame.size.height) animated:YES];
-    }
+//    _num = _num + 1;
+//    CGPoint point = self.contentOffset;
+//    if ((point.x >= scroll_width * (_mainData.count - 1))&&(point.y == 0)) {
+//        _num = 1.0;
+//    }
+//
+//    if (_num == 1.0) {
+//        [self scrollRectToVisible:CGRectMake(scroll_width * (_mainData.count - 1), 0, IMAGE_WIDTH, self.frame.size.height) animated:YES];
+//        [self setContentOffset:CGPointMake(self.frame.size.width * _num, 0)];
+//    }else{
+//        [self scrollRectToVisible:CGRectMake(scroll_width * _num, 0, IMAGE_WIDTH, self.frame.size.height) animated:YES];
+//    }
 }
 
 @end
