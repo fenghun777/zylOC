@@ -10,5 +10,5 @@
 
 @interface ZyBaseTableVIew : UITableView<UITableViewDelegate,UITableViewDataSource>
 - (void)initView;
-@property (nonatomic, strong) NSArray *mainData;
+@property (nonatomic, strong) NSMutableArray *mainData;
 @end

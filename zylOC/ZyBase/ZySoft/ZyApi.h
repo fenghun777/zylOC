@@ -26,4 +26,12 @@
  */
 + (void)api_BaseApi:(NSDictionary *)parameters onSuccess:(void (^)(ZyItemsModel *model))successBlcok onFail:(void (^)(NSError * fail))failBlcok;
 
+/**
+ * @brief 获取signature。 http://192.168.1.163:8000/api/v2/Home/signature
+ * @param parameters 需要传入的参数
+ * @param successBlcok 成功执行的block
+ * @param failBlcok 失败执行的block
+ */
++ (void)api_Signature:(NSDictionary *)parameters onSuccess:(void (^)(NSArray *arr))successBlcok onFail:(void (^)(NSError * fail))failBlcok;
+
 @end

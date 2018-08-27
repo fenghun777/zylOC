@@ -10,5 +10,4 @@
 
 @interface ZyBaseAppDelegate : UIResponder<UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic) NSInteger ZySelectedView;
 @end

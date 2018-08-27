@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ClickImageNumBlock)(NSString *indexStr);
 @interface ZyScrollView : UIScrollView
-- (void)initView;
 @property (nonatomic, strong) NSArray *mainData;
+@property (nonatomic, strong) ClickImageNumBlock clickImageNumBlock;
 
+- (void)initView;
 - (void)scrollViewOfWidth:(CGFloat)svWidth andSpaceWidth:(CGFloat)spaceWidth;
 @end

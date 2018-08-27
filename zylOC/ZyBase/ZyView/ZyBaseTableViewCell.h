@@ -9,18 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ZyBaseTableViewCell : UITableViewCell
-/**
- *  主图
- */
-@property (nonatomic, strong) UIImageView *ivHead;
 
-/**
- *  标题
- */
-@property (nonatomic, strong) UILabel *lblTitle;
-
-/**
- *  副标题
- */
-@property (nonatomic, strong) UILabel *lblDetail;
 @end

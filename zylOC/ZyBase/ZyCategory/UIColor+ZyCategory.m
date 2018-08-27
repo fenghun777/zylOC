@@ -28,8 +28,7 @@
         NSString *string = colorArray[r];
         colorString = [NSString stringWithFormat:@"%@%@", colorString, string];
     }
-    
-    NSLog(@"随机颜色为：%@", colorString);
+
     return [self zy_ColorWithHexString:colorString];
 }
 

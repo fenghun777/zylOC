@@ -42,17 +42,13 @@
 /**
  * @brief 获取字符串的尺寸，通过传入的字体大小和最大宽度判断。
  * @param content 传入的内容
- * @param font 字体大小
- * @param width 最大宽度
+ * @param font 字体大小（越大 高度越高）
+ * @param size 可以设置最大宽度（设置为0为默认）， 设置高度无效（不知道为什么）
  */
-+ (CGSize)zy_GetContentSize:(NSString *)content font:(UIFont *)font width:(float)width;
++ (CGSize)zy_GetContentSize:(NSString *)content font:(CGFloat)font size:(CGSize)size;
 
 #pragma mark - 获取类的属性个数
 + (NSInteger)zy_GetCountOfClass:(id)class;
-
-
-
-
 
 #pragma mark -
 

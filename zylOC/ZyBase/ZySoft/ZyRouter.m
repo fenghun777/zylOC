@@ -72,6 +72,8 @@
                                    @"Zy_Web":@"WebViewController",//跳转到网页
                                    @"Zy_Default":@"DefaultViewController",//跳转到默认网页
                                    @"Zy_AllFunction":@"AllFunctionViewController",//跳转到自定义的控制器，封装了一些特殊功能
+                                   @"Zy_Chat":@"ChatViewController",//跳转到聊天
+                                   
                                    
                                    };
     if ([dicController.allKeys containsObject:route]) {

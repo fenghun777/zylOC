@@ -13,10 +13,16 @@
 #pragma mark - 把字符串中的汉字转化成utf8
 + (NSString *)zy_ChineseToUTF8:(NSString *)str API_DEPRECATED_WITH_REPLACEMENT("把字符串中的汉字转化成utf8",ios(2.0,14.0));
 
-//sha加密
+//MARK:是否包含汉字
++ (BOOL)zy_ContainChinese:(NSString *)str;
+
+//综合判断是否包含各种字母
++ (int)zy_CheckIsHaveNumAndLetter:(NSString*)str;
+
+//MARK: sha加密
 +(NSString *)zy_Sha1:(NSString *)input;
 
-//MD5加密
+//MARK: MD5加密
 +(NSString *)zy_Md5:(NSString *)input;
 
 @end

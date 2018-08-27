@@ -27,7 +27,8 @@
         [window addSubview:showview];
         
         UILabel *label = [[UILabel alloc] init];
-        CGSize labelsize = [ZyUtils zy_GetContentSize:message font:FONT(17) width:290];
+        CGSize labelsize = [ZyUtils zy_GetContentSize:message font:17 size:CGSizeMake(0, 17)];
+//        CGSize labelsize = [ZyUtils zy_GetContentSize:message font:FONT(17) width:290];
         label.frame = CGRectMake(10, 5, labelsize.width, labelsize.height);
         label.text = message;
         label.textColor = [UIColor whiteColor];

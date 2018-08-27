@@ -48,9 +48,5 @@
     echo(@"程序将要退出");
 }
 
-- (void)setZySelectedView:(NSInteger)ZySelectedView{
-    UINavigationController *rootController = (UINavigationController *)self.window.rootViewController;
-    [(UITabBarController *)rootController.topViewController setSelectedIndex:ZySelectedView];
-}
 
 @end

@@ -8,8 +8,8 @@
 
 #import "ZyScrollView.h"
 
-#define IMAGE_WIDTH (self.frame.size.width - 40) //图片的宽度
-#define SPACE_WIDTH 10 //图片间距
+#define IMAGE_WIDTH (self.frame.size.width - 0) //图片的宽度
+#define SPACE_WIDTH 0 //图片间距
 
 typedef void(^RunloopBlock)(void);
 @interface ZyScrollView ()<UIScrollViewDelegate>
@@ -29,45 +29,13 @@ typedef void(^RunloopBlock)(void);
     self = [super initWithFrame:frame];
     if (self) {
         _num = 1;
-        [self addRunloopObserver];
     }
     return self;
 }
 
-- (void)layoutSubviews{
-    
-    echo(@"运行方法%s", __FUNCTION__);
-}
-
-static void callBack(){
-    echo(@"回调");
-}
-
-- (void)addRunloopObserver{
-//    拿到当前runloop
-    CFRunLoopRef runloop = CFRunLoopGetCurrent();
-    
-//    定义一个上下文
-    CFRunLoopObserverContext context = {
-        0,
-        (__bridge void *)(self),
-        &CFRetain,
-        &CFRelease,
-        NULL
-    };
-    
-//    定义一个观察者
-    static CFRunLoopObserverRef defaultModeObserver;
-    
-//    创建观察者
-    defaultModeObserver = CFRunLoopObserverCreate(NULL, kCFRunLoopAfterWaiting, YES, 0, &callBack, &context);
-    
-//    添加Runloop的观察者
-    CFRunLoopAddObserver(runloop, defaultModeObserver, kCFRunLoopDefaultMode);
-    
-//    c语言有Creat 需要release
-    CFRelease(defaultModeObserver);
-}
+//- (void)layoutSubviews{
+//    echo(@"运行方法%s", __FUNCTION__);
+//}
 
 - (void)setMainData:(NSArray *)mainData{
     _mainData = mainData;
@@ -99,6 +67,11 @@ static void callBack(){
         
         [self addSubview:ivImage];
         ivImage.frame = CGRectMake((IMAGE_WIDTH + SPACE_WIDTH) * i, 0, IMAGE_WIDTH, self.frame.size.height);
+        ivImage.tag = 1000 + i;
+        [ivImage setUserInteractionEnabled:true];
+        
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesClick:)];
+        [ivImage addGestureRecognizer:tapGes];
     }
     
     self.backgroundColor = [UIColor yellowColor];
@@ -134,7 +107,7 @@ static void callBack(){
     // 用来记录scrollview滚动的位置
 //    self.contentOffset = CGPointMake(20, 40);
     //        设置初始位置
-    [self setContentOffset:CGPointMake(IMAGE_WIDTH - 10, 0)];
+    [self setContentOffset:CGPointMake(IMAGE_WIDTH, 0)];
     
     //clipsToBounds：是指视图上的子视图,如果超出父视图的部分就截取掉,
 //    masksToBounds：是指视图的图层上的子图层,如果超出父图层的部分就截取掉
@@ -162,12 +135,12 @@ static void callBack(){
     
 //    设置定时器
     dispatch_time_t startTime = DISPATCH_TIME_NOW;
-    dispatch_time_t interval = 1.0 * NSEC_PER_SEC;//1000000000
+    dispatch_time_t interval = 2.0 * NSEC_PER_SEC;//1000000000
     dispatch_source_set_timer(self.timer, startTime, interval, 0);
     
 //    设置回调
     dispatch_source_set_event_handler(self.timer, ^{
-        NSLog(@"------%@", [NSThread currentThread]);
+//        NSLog(@"========%@", [NSThread currentThread]);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self timerClick];
         }];
@@ -262,18 +235,25 @@ static void callBack(){
 }
 
 - (void)timerClick{
-//    _num = _num + 1;
-//    CGPoint point = self.contentOffset;
-//    if ((point.x >= scroll_width * (_mainData.count - 1))&&(point.y == 0)) {
-//        _num = 1.0;
-//    }
-//
-//    if (_num == 1.0) {
-//        [self scrollRectToVisible:CGRectMake(scroll_width * (_mainData.count - 1), 0, IMAGE_WIDTH, self.frame.size.height) animated:YES];
-//        [self setContentOffset:CGPointMake(self.frame.size.width * _num, 0)];
-//    }else{
-//        [self scrollRectToVisible:CGRectMake(scroll_width * _num, 0, IMAGE_WIDTH, self.frame.size.height) animated:YES];
-//    }
+    _num = _num + 1;
+    CGPoint point = self.contentOffset;
+    if ((point.x >= scroll_width * (_mainData.count - 1))&&(point.y == 0)) {
+        _num = 1.0;
+    }
+
+    if (_num == 1.0) {
+        [self scrollRectToVisible:CGRectMake(scroll_width * (_mainData.count - 1), 0, IMAGE_WIDTH, self.frame.size.height) animated:YES];
+        [self setContentOffset:CGPointMake(self.frame.size.width * _num, 0)];
+    }else{
+        [self scrollRectToVisible:CGRectMake(scroll_width * _num, 0, IMAGE_WIDTH, self.frame.size.height) animated:YES];
+    }
+}
+
+- (void)tapGesClick:(UITapGestureRecognizer *)tap {
+    UIImageView *ivImage = (UIImageView *)tap.view;
+    if (self.clickImageNumBlock) {
+        self.clickImageNumBlock([NSString stringWithFormat:@"%@", @(ivImage.tag - 1000)]);
+    }
 }
 
 @end

@@ -52,9 +52,14 @@
     lblOrg.layer.mask = maskLayer;
 }
 
-+ (CGSize)zy_GetContentSize:(NSString *)content font:(UIFont *)font width:(float)width{
-    CGSize bubbleSize = [content sizeWithFont:font constrainedToSize:CGSizeMake(width , MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
-    return bubbleSize;
++ (CGSize)zy_GetContentSize:(NSString *)content font:(CGFloat)font size:(CGSize)size{
+//    NSStringDrawingUsesLineFragmentOrigin = 1 << 0, // 指定的原点是线段原点，而不是基线原点。
+//    NSStringDrawingUsesFontLeading = 1 << 1, // 依据字体大小计算线高度
+//    NSStringDrawingUsesDeviceMetrics = 1 << 3, // 使用图像字形边界而不是印刷边界。
+//    NSStringDrawingTruncatesLastVisibleLine 如果文本不符合指定的范围，则截断并将省略字符添加到最后一个可见行。如果NSStringDrawingUsesLineFragmentOrigin没有设置，则该项无效
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:font]};
+    CGSize titleSize = [content boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil].size;
+    return titleSize;
 }
 
 + (NSInteger)zy_GetCountOfClass:(id)class{

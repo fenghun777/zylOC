@@ -80,7 +80,7 @@
 //使用字典以 indexPath 为键，以对应的 SupplementaryView 为值来维护屏幕上可见的 SupplementaryView的信息。
 //在这里执行观察操作，如果该 indexPath 在字典里不存在则新建，若存在则更新该键的值。
 - (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
-    echo(@"重用机制:willDisplaySupplementaryView,第%ldsection,第%lditem", (long)indexPath.section, (long)indexPath.item);
+    echo(@"重用机制=第%ld行,第%ld项", (long)indexPath.section, (long)indexPath.item);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingSupplementaryView:(UICollectionReusableView *)view forElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
@@ -126,7 +126,7 @@
 
 //MARK: UICollectionViewDataSource代理方法的实现
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    echo(@"cell的个数（一个section里）");
+
     return self.mainData.count;
 }
 

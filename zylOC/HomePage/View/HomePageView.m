@@ -73,7 +73,9 @@
     
 //    Zy_AllFunction
 //    Zy_Default
-    [ZyRouter zy_route_pushController:@"Zy_Default"];
+//    Zy_Chat
+    
+    [ZyRouter zy_route_pushController:@"Zy_Chat"];
 }
 
 

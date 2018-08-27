@@ -8,7 +8,7 @@
 
 #import "ZyBaseAppDelegate.h"
 
-@interface AppDelegate : ZyBaseAppDelegate<UITabBarControllerDelegate,UIAlertViewDelegate>
+@interface AppDelegate : ZyBaseAppDelegate<UIAlertViewDelegate>
 
 @property (assign, nonatomic)BOOL isDBMigrating;
 

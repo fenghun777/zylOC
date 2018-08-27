@@ -24,6 +24,13 @@
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+- (NSArray *)mainData {
+    if (!_mainData) {
+        _mainData = [[NSMutableArray alloc] init];
+    }
+    return _mainData;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.01;
 }

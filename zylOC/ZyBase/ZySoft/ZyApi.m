@@ -40,7 +40,19 @@
     }];
 }
 
-
++ (void)api_Signature:(NSDictionary *)parameters onSuccess:(void (^)(NSArray *arr))successBlcok onFail:(void (^)(NSError * fail))failBlcok{
+    [ZyNetwork httpRequestTask:HTTPRequestMethod_POST withUrl:@"http://192.168.1.162:8000/api/v2/Home/signature" withData:parameters notifiyError:YES onSuccess:^(id response) {
+        [self nslogData:response];
+        NSArray *arrData = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if (successBlcok) {
+            successBlcok(arrData);
+        }
+    } onFail:^(NSError *fail) {
+        if (failBlcok) {
+            failBlcok(fail);
+        }
+    }];
+}
 
 
 

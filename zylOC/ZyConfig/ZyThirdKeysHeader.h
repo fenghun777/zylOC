@@ -14,14 +14,27 @@
 //MARK: App Store版
 
 //友盟相关数据
-#define  UM_PushKey                   @"sssssdfasdfasdf "
+#define  UM_PushKey                   @"sssssdfasdfasdf"
 #define  UM_PushSecret                @""
 
 #define  AMap_Key                @""
 #define  ease_Key                @""
 
+//极光推送的SDK
+#define JPushKey                  @"199a3afe2d1af2b4b25060ce"
+#define JPushSecret               @"f15a9616037a5085484f9b0e"
+#define JPushChannel              @"Publish channel"
 
+//腾讯IM
+//托管模式
+//#define kTLSAppid       @"1400113152"
+//#define kSdkAppId       @"1400113152"
+//#define kSdkAccountType @"31711"
 
+//独立模式
+#define kTLSAppid       @"1400110973"
+#define kSdkAppId       @"1400110973"
+#define kSdkAccountType @"30853"
 
 
 

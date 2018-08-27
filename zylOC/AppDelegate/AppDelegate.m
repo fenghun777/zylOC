@@ -9,10 +9,7 @@
 #import "AppDelegate.h"
 #import "ZyBaseViewController.h"
 #import "SignInViewController.h"
-//#import "RedPacketUserConfig.h"
 #import <UserNotifications/UserNotifications.h>
-
-#import "UMessage.h"
 
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
@@ -20,7 +17,14 @@
 
 #import "ZyTabBarController.h"
 
-@interface AppDelegate ()<UNUserNotificationCenterDelegate, UITabBarDelegate, UITabBarControllerDelegate>
+// 引入JPush功能所需头文件
+#import "JPUSHService.h"
+// iOS10注册APNs所需头文件
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+
+@interface AppDelegate ()<UNUserNotificationCenterDelegate, UITabBarDelegate, JPUSHRegisterDelegate>
 
 @end
 
@@ -31,50 +35,51 @@
     [super application:application didFinishLaunchingWithOptions:launchOptions];
 //    判断是否联网
     [self setIsLinking];
-//    设置环信
-    //[self setEaseMobApplication:application andOptions:launchOptions];
-//    设置友盟推送
-    [self setUMessageApplication:application andOptions:launchOptions];
+//    设置极光推送
+    [self setJPushApplication:application andOptions:launchOptions];
 //    设置高德地图
     [self setAMapData];
     
 //    进入app主界面
     [self enterApp];
-
-    echo(@"ceshi");
-    echo(@"ceshi1");
+    
     return YES;
 }
 
 
-//当点击command+H时,程序取消激活状态
+//MARK: 当点击command+H时,程序取消激活状态
 - (void)applicationWillResignActive:(UIApplication *)application {
     [super applicationWillResignActive:application];
 }
 
-//程序进入后台
+//MARK: 程序进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [super applicationDidEnterBackground:application];
 //    [[EMClient sharedClient] applicationDidEnterBackground:application];
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
-//点击进入工程,程序进入前台
+//MARK: 点击进入工程,程序进入前台
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     [super applicationWillEnterForeground:application];
 //    [[EMClient sharedClient] applicationWillEnterForeground:application];
+    
+    [application setApplicationIconBadgeNumber:0];
+    [application cancelAllLocalNotifications];
 }
 
-//程序被激活
+//MARK: 程序被激活
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [super applicationDidBecomeActive:application];
 }
 
-//当程序将要退出是被调用，通常是用来保存数据和一些退出前的清理工作。这个需要要设置UIApplicationExitsOnSuspend的键值
+//MARK: 当程序将要退出时被调用，通常是用来保存数据和一些退出前的清理工作。这个需要要设置UIApplicationExitsOnSuspend的键值
 - (void)applicationWillTerminate:(UIApplication *)application {
     [super applicationWillTerminate:application];
 }
 
-// 将得到的deviceToken传给SDK
+// MARK: 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     echo(@"devicetoken===%@",deviceToken);
 
@@ -88,35 +93,37 @@
         //[[EMClient sharedClient] bindDeviceToken:deviceToken];
     });
     echo(@"===devicetoken===%@",deviceTokenStr);
+    
+    [JPUSHService registerDeviceToken:deviceToken];
 }
-
+// MARK: 实现注册APNs失败接口（可选）
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     echo(@"%@", error);
     [ZyRouter zy_route_visibleViewController];
 }
 
+//MARK: 只是在程序处于运行状态和前台状态调用，但是你强制杀死程序之后，来了远程推送，系统不会自动进入你的程序，这个时候application:didReceiveRemoteNotification:就不会被调用
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    //关闭U-Push自带的弹出框
-    [UMessage setAutoAlert:NO];
-    [UMessage didReceiveRemoteNotification:userInfo];
-    
-//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"didReceiveRemoteNotification" message:@"userInfo" delegate:self cancelButtonTitle:@"quxiao" otherButtonTitles:nil];
-//    [alertView show];
-    //[self easemobApplication:application didReceiveRemoteNotification:userInfo];
-    
+    [JPUSHService handleRemoteNotification:userInfo];
+    NSLog(@"iOS6及以下系统，收到通知:%@", userInfo);
+    [self onReceiveZyMessage:userInfo];
+}
+//MARK: 那么当你手动进入程序（或者点击系统的推送提示），当程序launch完毕之后，就会调用- application:didReceiveRemoteNotification:fetchCompletionHandler:
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    [JPUSHService handleRemoteNotification:userInfo];
+    NSLog(@"iOS6及以下系统，收到通知:%@", userInfo);
     [self onReceiveZyMessage:userInfo];
 }
 
+//MARK:当运行再后台的时候，会有弹窗提示用户另外一个App有通知，对于本地通知单的处理
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"didReceiveLocalNotification" message:@"userInfo" delegate:self cancelButtonTitle:@"quxiao" otherButtonTitles:nil];
-//    [alertView show];
     NSDictionary *userInfo = notification.userInfo;
     [self onReceiveZyMessage:userInfo];
 }
 
-//iOS10新增：处理前台收到通知的代理方法
+// MARK: iOS10新增：处理前台收到通知的代理方法
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler NS_AVAILABLE_IOS(10_0)
 {
     NSDictionary *userInfo = notification.request.content.userInfo;
@@ -126,10 +133,6 @@
         if (@available(iOS 10.0, *)) {
             if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
                 //应用处于前台时的远程推送接受
-                //关闭U-Push自带的弹出框
-                [UMessage setAutoAlert:NO];
-                //必须加这句代码
-                [UMessage didReceiveRemoteNotification:userInfo];
                 
             }else{
                 //应用处于前台时的本地推送接受
@@ -149,17 +152,13 @@
     [self onReceiveZyMessage:userInfo];
 }
 
-//iOS10新增：处理后台点击通知的代理方法
+//MARK: iOS10新增：处理后台点击通知的代理方法
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler NS_AVAILABLE_IOS(10_0){
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if (@available(iOS 10.0, *)) {
         if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-            //应用处于后台时的远程推送接受
-            //必须加这句代码
-            [UMessage didReceiveRemoteNotification:userInfo];
-            
+            echo(@"应用处于后台时的远程推送接受");
         }else{
-            //应用处于后台时的本地推送接受
             echo(@"应用处于后台时的本地推送接受");
         }
     } else {
@@ -168,70 +167,19 @@
     [self onReceiveZyMessage:userInfo];
 }
 
-
-
-//进入app
+//MARK: 进入app
 - (void)enterApp{
-    NSArray *viewcontrollers = @[
-  @{@"title" : @"首页", @"controller":@"HomePageViewController", @"ico_selected":@"tabbar_buy_s",   @"ico_unSelected":@"tabbar_buy_n"},
-  @{@"title" : @"分类", @"controller":@"ClassifyViewController", @"ico_selected":@"tabbar_class_s", @"ico_unSelected":@"tabbar_class_n"},
-  @{@"title" : @"我的", @"controller":@"MineViewController",     @"ico_selected":@"tabbar_my_s",    @"ico_unSelected":@"tabbar_my_n"}
-  ];
-    
-    NSMutableArray *viewControllers = [NSMutableArray array];
-    for (NSDictionary *dicControler in viewcontrollers) {
-        UIImage *imageSelected = [UIImage imageNamed:dicControler[@"ico_selected"]];
-        imageSelected = [imageSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-        UIImage *imageUnSelected = [UIImage imageNamed:dicControler[@"ico_unSelected"]];
-        imageUnSelected = [imageUnSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-        Class c = NSClassFromString([NSString stringWithFormat:@"%@", [dicControler valueForKey:@"controller"]]);
-        ZyBaseViewController *basecontroller = [c new];
-        [basecontroller setTitle:[dicControler valueForKey:@"title"]];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:basecontroller];
-        navController.tabBarItem = [[UITabBarItem alloc] initWithTitle:[dicControler valueForKey:@"title"] image:imageUnSelected selectedImage:imageSelected];
-        
-         //未选中字体颜色
-        [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:FONT(14)} forState:UIControlStateNormal];
-        
-        //选中字体颜色
-        [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:FONT(14)} forState:UIControlStateSelected];
-        [viewControllers addObject:navController];
-    }
-    
     ZyTabBarController *tabBarController = [[ZyTabBarController alloc] init];
-    tabBarController.viewControllers = viewControllers;
-    [tabBarController setDelegate:self];
     UINavigationController *navMain = [[UINavigationController alloc] initWithRootViewController:tabBarController];
     [navMain setNavigationBarHidden:YES];
     [self setNav];
     tabBarController.selectedIndex = 0;
     self.window.rootViewController = navMain;
-
-    [self loginIm];
     
     [self updateApp];
 }
 
-//判断选中状态，时候跳转，若 未登录，跳到登录界面，已登录，正常跳转
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
-//    NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
-//    NSString *tokenStr = [userdefault objectForKey:UD_access_token];
-//
-//    UIViewController *selController = viewController.childViewControllers.firstObject;
-//    if ([selController isKindOfClass:[MineViewController class]]||[selController isKindOfClass:[MineViewController class]]||[selController isKindOfClass:[MineViewController class]]) {
-//        if (tokenStr) {
-//            return true;
-//        } else {
-//            [self signInApp];
-//            return false;
-//        }
-//    }
-    return true;
-}
-
-//判断是否联网
+//MARK: 判断是否联网
 - (void)setIsLinking{
     AFNetworkReachabilityManager*netStatus = [AFNetworkReachabilityManager sharedManager];
     
@@ -249,7 +197,7 @@
      [netStatus startMonitoring];
 }
 
-//跳转到登录界面
+//MARK: 跳转到登录界面
 - (void)signInApp{
     SignInViewController *vc = [[SignInViewController alloc]init];
     UIViewController *uivc = [ZyRouter zy_route_visibleViewController];
@@ -259,20 +207,12 @@
     [self updateApp];
 }
 
+//MARK:退出登录
 -(void)signoutApp{
-    
     [self resetDefaults];
-    //退出登录
-    [self setZySelectedView:0];
 }
 
-- (void)loginIm {
-    
-
-}
-
-
-//userdefaults清除
+//MARK: userdefaults清除
 - (void)resetDefaults {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     //            删除所有缓存，只保留DeviceToken
@@ -289,7 +229,7 @@
     [userDefaults setObject:deviceToken forKey:UD_deviceToken];
 }
 
-//设置navigationbar的背景颜色
+//MARK: 设置navigationbar的背景颜色
 - (void)setNav{
     UINavigationBar *bar = [UINavigationBar appearance];
     
@@ -302,32 +242,73 @@
     [bar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];
 }
 
-//MARK:友盟推送
-- (void)setUMessageApplication:(UIApplication *)application andOptions:(NSDictionary *)launchOptions{
-    [UMessage startWithAppkey:UM_PushKey launchOptions:launchOptions];
-    //注册通知，如果要使用category的自定义策略，可以参考demo中的代码。
-    [UMessage registerForRemoteNotifications];
+//MARK: 极光推送
+- (void)setJPushApplication:(UIApplication *)application andOptions:(NSDictionary *)launchOptions{
     
-    //iOS10必须加下面这段代码。
-    if (@available(iOS 10.0, *)) {
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        UNAuthorizationOptions types10=UNAuthorizationOptionBadge|  UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
-        center.delegate=self;
-        [center requestAuthorizationWithOptions:types10     completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            if (granted) {
-                //点击允许
-                //这里可以添加一些自己的逻辑
-            } else {
-                //点击不允许
-                //这里可以添加一些自己的逻辑
-            }
-        }];
-    } else {
-        // Fallback on earlier versions
+    // 3.0.0及以后版本注册可以这样写，也可以继续用旧的注册方式
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        //    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        //      NSSet<UNNotificationCategory *> *categories;
+        //      entity.categories = categories;
+        //    }
+        //    else {
+        //      NSSet<UIUserNotificationCategory *> *categories;
+        //      entity.categories = categories;
+        //    }
     }
-    //打开日志，方便调试
-    [UMessage setLogEnabled:YES];
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
     
+    // 3.0.0以前版本旧的注册方式
+    //  if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+    //#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+    //    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    //    entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+    //    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    //#endif
+    //  } else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+    //      //可以添加自定义categories
+    //      [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+    //                                                        UIUserNotificationTypeSound |
+    //                                                        UIUserNotificationTypeAlert)
+    //                                            categories:nil];
+    //  } else {
+    //      //categories 必须为nil
+    //      [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+    //                                                        UIRemoteNotificationTypeSound |
+    //                                                        UIRemoteNotificationTypeAlert)
+    //                                            categories:nil];
+    //  }
+    
+    //    开发环境和发布环境需要不同，后期调试 修改
+    BOOL isProduction = true;
+#if DEBUG
+    isProduction = false;
+#else
+    isProduction = true;
+#endif
+    //如不需要使用IDFA，advertisingIdentifier 可为nil
+    [JPUSHService setupWithOption:launchOptions appKey:JPushKey
+                          channel:JPushChannel
+                 apsForProduction:false
+            advertisingIdentifier:nil];
+    
+    //2.1.9版本新增获取registration id block接口。
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        if(resCode == 0){
+            NSLog(@"registrationID获取成功：%@",registrationID);
+        }
+        else{
+            NSLog(@"registrationID获取失败，code：%d",resCode);
+        }
+    }];
+    
+    
+//    [[NSBundle mainBundle] loadNibNamed:@"JpushTabBarViewController"
+//                                  owner:self
+//                                options:nil];
 }
 
 - (void)setAMapData{
@@ -345,9 +326,82 @@
     echo(@"%@", dicInfo);
     [ZyRouter zy_route_pushController:dicInfo[@"cmd"]];
     // TODO 添加本地推送通知
-    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController.childViewControllers.lastObject;
+    ZyTabBarController *tabBarController = (ZyTabBarController *)self.window.rootViewController.childViewControllers.lastObject;
     NSInteger badgeValue = tabBarController.tabBar.items[2].badgeValue.intValue;
     [tabBarController.tabBar.items[2] setBadgeValue:[NSString stringWithFormat:@"%ld", badgeValue + 1]];
+}
+
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#pragma mark- JPUSHRegisterDelegate
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler  API_AVAILABLE(ios(10.0)){
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    
+    UNNotificationRequest *request = notification.request; // 收到推送的请求
+    UNNotificationContent *content = request.content; // 收到推送的消息内容
+    
+    NSNumber *badge = content.badge;  // 推送消息的角标
+    NSString *body = content.body;    // 推送消息体
+    UNNotificationSound *sound = content.sound;  // 推送消息的声音
+    NSString *subtitle = content.subtitle;  // 推送消息的副标题
+    NSString *title = content.title;  // 推送消息的标题
+    
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        NSLog(@"iOS10 前台收到远程通知:%@", [self logDic:userInfo]);
+    }
+    else {
+        // 判断为本地通知
+        NSLog(@"iOS10 前台收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo);
+    }
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
+}
+
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
+    
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    UNNotificationRequest *request = response.notification.request; // 收到推送的请求
+    UNNotificationContent *content = request.content; // 收到推送的消息内容
+    
+    NSNumber *badge = content.badge;  // 推送消息的角标
+    NSString *body = content.body;    // 推送消息体
+    UNNotificationSound *sound = content.sound;  // 推送消息的声音
+    NSString *subtitle = content.subtitle;  // 推送消息的副标题
+    NSString *title = content.title;  // 推送消息的标题
+    
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        NSLog(@"iOS10 收到远程通知:%@", [self logDic:userInfo]);
+        
+    }
+    else {
+        // 判断为本地通知
+        NSLog(@"iOS10 收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo);
+    }
+    
+    completionHandler();  // 系统要求执行这个方法
+}
+#endif
+
+// log NSSet with UTF8
+// if not ,log will be \Uxxx
+- (NSString *)logDic:(NSDictionary *)dic {
+    if (![dic count]) {
+        return nil;
+    }
+    NSString *tempStr1 =
+    [[dic description] stringByReplacingOccurrencesOfString:@"\\u"
+                                                 withString:@"\\U"];
+    NSString *tempStr2 =
+    [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    NSString *tempStr3 =
+    [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *str =
+    [NSPropertyListSerialization propertyListFromData:tempData
+                                     mutabilityOption:NSPropertyListImmutable
+                                               format:NULL
+                                     errorDescription:NULL];
+    return str;
 }
 
 @end
